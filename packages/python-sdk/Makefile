@@ -1,0 +1,54 @@
+ROOT_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/../..)
+
+generate-api:
+	python $(ROOT_DIR)/spec/remove_extra_tags.py sandboxes snapshots templates tags
+	openapi-python-client generate --output-path $(ROOT_DIR)/packages/python-sdk/vdesk/api/api --overwrite --path $(ROOT_DIR)/spec/openapi_generated.yml
+	rm -rf vdesk/api/client
+	mv vdesk/api/api/vdesk_api_client vdesk/api/client
+	rm -rf vdesk/api/api
+	ruff format .
+
+generate-envd:
+	if [ ! -f "/go/bin/protoc-gen-connect-python" ]; then \
+		$(MAKE) -C $(ROOT_DIR)/packages/connect-python build; \
+	fi
+
+	cd $(ROOT_DIR)/spec/envd && pwd && buf generate --template buf-python.gen.yaml
+	./scripts/fix-python-pb.sh
+
+	ruff format .
+
+generate: generate-api generate-envd generate-mcp
+
+init:
+	pip install openapi-python-client datamodel-code-generator
+
+typecheck:
+	ty check
+
+lint:
+	ruff check .
+	ruff format --check .
+
+format:
+	ruff format .
+
+generate-mcp:
+	datamodel-codegen \
+			--input ../../spec/mcp-server.json \
+			--input-file-type jsonschema \
+			--output vdesk/sandbox/mcp.py \
+			--output-model-type typing.TypedDict \
+			--target-python-version 3.10 \
+			--class-name McpServer \
+			--use-field-description \
+			--disable-timestamp \
+			--extra-fields forbid
+
+.PHONY: setup
+setup:
+	poetry install
+
+.PHONY: test
+test: setup
+	poetry run pytest --verbose --numprocesses=4

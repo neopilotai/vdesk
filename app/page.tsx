@@ -26,6 +26,7 @@ import Logo from "@/components/logo";
 import { RepoBanner } from "@/components/repo-banner";
 import { SANDBOX_TIMEOUT_MS } from "@/lib/config";
 import { Surfing } from "@/components/surfing";
+import { logError } from "@/lib/logger";
 
 export default function Home() {
   const [sandboxId, setSandboxId] = useState<string | null>(null);
@@ -39,6 +40,8 @@ export default function Home() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const iFrameWrapperRef = useRef<HTMLDivElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // Guard to prevent race condition when timeout is auto-extended
+  const timeoutExtendedRef = useRef(false);
 
   const {
     messages,
@@ -81,22 +84,28 @@ export default function Home() {
           toast.error("Failed to stop sandbox instance");
         }
       } catch (error) {
-        console.error("Failed to stop sandbox:", error);
+        logError("Failed to stop sandbox:", error);
         toast.error("Failed to stop sandbox");
       }
     }
   };
 
   const handleIncreaseTimeout = async () => {
-    if (!sandboxId) return;
+    if (!sandboxId || timeoutExtendedRef.current) return;
+
+    // Set flag to prevent race condition with simultaneous calls
+    timeoutExtendedRef.current = true;
 
     try {
       await increaseTimeout(sandboxId);
       setTimeRemaining(SANDBOX_TIMEOUT_MS / 1000);
       toast.success("Instance time increased");
     } catch (error) {
-      console.error("Failed to increase time:", error);
+      logError("Failed to increase time:", error);
       toast.error("Failed to increase time");
+    } finally {
+      // Reset flag only after operation completes
+      timeoutExtendedRef.current = false;
     }
   };
 
@@ -155,6 +164,7 @@ export default function Home() {
       variant="outline"
       size="icon"
       suppressHydrationWarning
+      aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
     >
       {theme === "dark" ? (
         <SunIcon className="h-5 w-5" suppressHydrationWarning />
@@ -177,10 +187,12 @@ export default function Home() {
   useEffect(() => {
     if (!sandboxId) return;
 
-    if (timeRemaining === 10 && isTabVisible) {
+    // Auto-extend timeout at 10 seconds - but only once per interval
+    if (timeRemaining === 10 && isTabVisible && !timeoutExtendedRef.current) {
       handleIncreaseTimeout();
     }
 
+    // Handle timeout expiration
     if (timeRemaining === 0) {
       setSandboxId(null);
       setVncUrl(null);
@@ -188,6 +200,7 @@ export default function Home() {
       stopGeneration();
       toast.error("Instance time expired");
       setTimeRemaining(SANDBOX_TIMEOUT_MS / 1000);
+      timeoutExtendedRef.current = false;
     }
   }, [timeRemaining, sandboxId, stopGeneration, clearMessages, isTabVisible]);
 
@@ -216,11 +229,11 @@ export default function Home() {
               <h1 className="whitespace-pre">Surf - Computer Agent by </h1>
             </Link>
             <Link
-              href="https://e2b.dev"
+              href="https://vdesk.dev"
               className="underline decoration-accent decoration-1 underline-offset-2 text-accent"
               target="_blank"
             >
-              E2B
+              VDESK
             </Link>
           </div>
 
@@ -230,6 +243,9 @@ export default function Home() {
               variant="ghost"
               size="icon"
               className="mr-1"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
             >
               {mobileMenuOpen ? (
                 <X className="h-5 w-5" />
@@ -260,16 +276,17 @@ export default function Home() {
                         ? "Increase Time"
                         : "Timer paused (tab not active)"
                     }
+                    aria-label={`Instance time remaining: ${Math.floor(timeRemaining / 60)} minutes ${timeRemaining % 60} seconds. ${isTabVisible ? "Click to extend time" : "Timer paused (tab not active)"}`}
+                    disabled={!isTabVisible}
                   >
                     <Timer
-                      className={`h-3 w-3 ${
-                        !isTabVisible ? "text-fg-400" : ""
-                      }`}
+                      className={`h-3 w-3 ${!isTabVisible ? "text-fg-400" : ""
+                        }`}
                     />
                     <span
-                      className={`text-xs font-medium ${
-                        !isTabVisible ? "text-fg-400" : ""
-                      }`}
+                      className={`text-xs font-medium ${!isTabVisible ? "text-fg-400" : ""
+                        }`}
+                      aria-hidden="true"
                     >
                       {Math.floor(timeRemaining / 60)}:
                       {(timeRemaining % 60).toString().padStart(2, "0")}
@@ -281,6 +298,7 @@ export default function Home() {
                     onClick={stopSandbox}
                     variant="error"
                     className="text-xs"
+                    aria-label="Stop the sandbox instance"
                   >
                     <Power className="w-3 h-3" />
                     Stop
@@ -310,16 +328,17 @@ export default function Home() {
                         : "Timer paused (tab not active)"
                     }
                     className="px-1.5"
+                    aria-label={`Instance time remaining: ${Math.floor(timeRemaining / 60)} minutes ${timeRemaining % 60} seconds`}
+                    disabled={!isTabVisible}
                   >
                     <Timer
-                      className={`h-3 w-3 ${
-                        !isTabVisible ? "text-fg-400" : ""
-                      }`}
+                      className={`h-3 w-3 ${!isTabVisible ? "text-fg-400" : ""
+                        }`}
                     />
                     <span
-                      className={`text-xs font-medium ml-1 ${
-                        !isTabVisible ? "text-fg-400" : ""
-                      }`}
+                      className={`text-xs font-medium ml-1 ${!isTabVisible ? "text-fg-400" : ""
+                        }`}
+                      aria-hidden="true"
                     >
                       {Math.floor(timeRemaining / 60)}:
                       {(timeRemaining % 60).toString().padStart(2, "0")}
@@ -331,6 +350,7 @@ export default function Home() {
                     variant="error"
                     size="sm"
                     className="text-xs px-1.5"
+                    aria-label="Stop the sandbox instance"
                   >
                     <Power className="w-3 h-3" />
                   </Button>
@@ -343,11 +363,13 @@ export default function Home() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
+              id="mobile-menu"
               className="md:hidden border-b p-2 flex items-center justify-between"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
+              role="navigation"
             >
               <div className="flex items-center gap-2">
                 <ThemeToggle />
@@ -400,7 +422,7 @@ export default function Home() {
                   <span className="text-fg">select</span> an example prompt to
                   start a new{" "}
                   <a
-                    href="https://github.com/e2b-dev/desktop"
+                    href="https://github.com/vdesk-dev/desktop"
                     className="underline inline-flex items-center gap-1 decoration-accent decoration-1 underline-offset-2 text-accent"
                     target="_blank"
                   >

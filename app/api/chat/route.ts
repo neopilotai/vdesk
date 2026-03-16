@@ -1,4 +1,4 @@
-import { Sandbox } from "@e2b/desktop";
+import { Sandbox } from "@vdesk/desktop";
 import { ComputerModel, SSEEvent, SSEEventType } from "@/types/api";
 import {
   ComputerInteractionStreamerFacade,
@@ -8,8 +8,23 @@ import { SANDBOX_TIMEOUT_MS } from "@/lib/config";
 import { OpenAIComputerStreamer } from "@/lib/streaming/openai";
 import { logError } from "@/lib/logger";
 import { ResolutionScaler } from "@/lib/streaming/resolution";
+import { validateInputStrict, SendMessageSchema } from "@/lib/utils/validation";
 
 export const maxDuration = 800;
+
+/**
+ * Validates that all required environment variables are set
+ */
+function validateEnvironmentVariables(): void {
+  const requiredVars = ["VDESK_API_KEY"];
+  const missingVars = requiredVars.filter((v) => !process.env[v]);
+
+  if (missingVars.length > 0) {
+    throw new Error(
+      `Missing required environment variables: ${missingVars.join(", ")}`
+    );
+  }
+}
 
 class StreamerFactory {
   static getStreamer(
@@ -38,24 +53,25 @@ export async function POST(request: Request) {
     abortController.abort();
   });
 
-  const {
-    messages,
-    sandboxId,
-    resolution,
-    model = "openai",
-  } = await request.json();
-
-  const apiKey = process.env.E2B_API_KEY;
-
-  if (!apiKey) {
-    return new Response("E2B API key not found", { status: 500 });
-  }
-
-  let desktop: Sandbox | undefined;
-  let activeSandboxId = sandboxId;
-  let vncUrl: string | undefined;
-
   try {
+    // Validate environment variables on each request
+    validateEnvironmentVariables();
+
+    // Parse and validate request body
+    const requestBody = await request.json();
+    const validatedData = validateInputStrict(
+      SendMessageSchema,
+      requestBody,
+      "Chat API request"
+    );
+
+    const { messages, sandboxId, resolution, model = "openai" } = validatedData;
+    const apiKey = process.env.VDESK_API_KEY;
+
+    let desktop: Sandbox | undefined;
+    let activeSandboxId = sandboxId;
+    let vncUrl: string | undefined;
+
     if (!activeSandboxId) {
       const newSandbox = await Sandbox.create({
         resolution,
@@ -73,43 +89,51 @@ export async function POST(request: Request) {
     }
 
     if (!desktop) {
+      logError("Failed to create or connect to sandbox");
       return new Response("Failed to connect to sandbox", { status: 500 });
     }
 
     desktop.setTimeout(SANDBOX_TIMEOUT_MS);
 
-    try {
-      const streamer = StreamerFactory.getStreamer(
-        model as ComputerModel,
-        desktop,
-        resolution
-      );
+    const streamer = StreamerFactory.getStreamer(
+      model as ComputerModel,
+      desktop,
+      resolution
+    );
 
-      if (!sandboxId && activeSandboxId && vncUrl) {
-        async function* stream(): AsyncGenerator<SSEEvent<typeof model>> {
-          yield {
-            type: SSEEventType.SANDBOX_CREATED,
-            sandboxId: activeSandboxId,
-            vncUrl: vncUrl as string,
-          };
+    if (!sandboxId && activeSandboxId && vncUrl) {
+      async function* stream(): AsyncGenerator<SSEEvent<typeof model>> {
+        yield {
+          type: SSEEventType.SANDBOX_CREATED,
+          sandboxId: activeSandboxId,
+          vncUrl: vncUrl as string,
+        };
 
-          yield* streamer.stream({ messages, signal });
-        }
-
-        return createStreamingResponse(stream());
-      } else {
-        return createStreamingResponse(streamer.stream({ messages, signal }));
+        yield* streamer.stream({ messages, signal });
       }
-    } catch (error) {
-      logError("Error from streaming service:", error);
 
-      return new Response(
-        "An error occurred with the AI service. Please try again.",
-        { status: 500 }
-      );
+      return createStreamingResponse(stream());
+    } else {
+      return createStreamingResponse(streamer.stream({ messages, signal }));
     }
   } catch (error) {
-    logError("Error connecting to sandbox:", error);
-    return new Response("Failed to connect to sandbox", { status: 500 });
+    const err = error instanceof Error ? error : new Error(String(error));
+
+    // Handle validation errors with 400 status
+    if (err.message.includes("validation failed")) {
+      logError("Validation error:", err.message);
+      return new Response(err.message, { status: 400 });
+    }
+
+    // Handle missing environment variables with 500 status
+    if (err.message.includes("environment variables")) {
+      logError("Configuration error:", err.message);
+      return new Response("Server configuration error", { status: 500 });
+    }
+
+    logError("Error in chat API:", err.message);
+    return new Response("An error occurred. Please try again.", {
+      status: 500,
+    });
   }
 }

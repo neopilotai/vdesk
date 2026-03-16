@@ -1,0 +1,3 @@
+Contact: mailto:security@vdesk.dev
+Preferred-Languages: en
+Canonical: https://vdesk.dev/.well-known/security.txt

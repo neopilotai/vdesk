@@ -1,7 +1,7 @@
-export type LogoStyle = "e2b" | "fragments";
+export type LogoStyle = "vdesk" | "fragments";
 
 export default function Logo({
-  style = "e2b",
+  style = "vdesk",
   ...props
 }: { style?: LogoStyle } & React.SVGProps<SVGSVGElement>) {
   return style === "fragments" ? (

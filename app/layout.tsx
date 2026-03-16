@@ -1,11 +1,12 @@
 import "@/styles/globals.css";
 
 import { Metadata } from "next";
-import { Toaster } from "sonner";
+import { Toaster } from "sonery";
 import { Providers } from "../components/providers";
 import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { ChatProvider } from "@/lib/chat-context";
 import { Analytics } from "@vercel/analytics/react";
+import { ErrorBoundary } from "@/components/error-boundary";
 
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -20,19 +21,19 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Surf - E2B Computer Use Agent",
+  title: "Surf - VDESK Computer Use Agent",
   description:
     "AI agent that interacts with a virtual desktop environment through natural language instructions",
   keywords: [
     "AI",
     "desktop",
     "automation",
-    "E2B",
+    "VDESK",
     "OpenAI",
     "virtual desktop",
     "sandbox",
   ],
-  authors: [{ name: "E2B", url: "https://e2b.dev" }],
+  authors: [{ name: "VDESK", url: "https://vdesk.dev" }],
 };
 
 export default function RootLayout({
@@ -46,13 +47,15 @@ export default function RootLayout({
         className={`${ibmPlexSans.variable} ${ibmPlexMono.variable}`}
         suppressHydrationWarning
       >
-        <Providers>
-          <ChatProvider>
-            <Toaster position="top-center" richColors />
-            {children}
-            <Analytics />
-          </ChatProvider>
-        </Providers>
+        <ErrorBoundary>
+          <Providers>
+            <ChatProvider>
+              <Toaster position="top-center" richColors />
+              {children}
+              <Analytics />
+            </ChatProvider>
+          </Providers>
+        </ErrorBoundary>
       </body>
     </html>
   );

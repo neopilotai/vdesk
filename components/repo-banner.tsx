@@ -4,7 +4,7 @@ import { Separator } from "./ui/separator";
 import { cn } from "@/lib/utils";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 
-const REPO_URL = "https://github.com/e2b-dev/surf";
+const REPO_URL = "https://github.com/vdesk-dev/surf";
 
 export function RepoBanner() {
   return (

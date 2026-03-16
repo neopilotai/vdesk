@@ -1,4 +1,4 @@
-import { Sandbox } from "@e2b/desktop";
+import { Sandbox } from "@vdesk/desktop";
 import {
   MAX_RESOLUTION_WIDTH,
   MAX_RESOLUTION_HEIGHT,
