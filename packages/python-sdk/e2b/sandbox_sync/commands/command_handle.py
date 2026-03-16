@@ -1,8 +1,8 @@
 from typing import Optional, Callable, Any, Generator, Union, Tuple
 
-from e2b.envd.rpc import handle_rpc_exception
-from e2b.envd.process import process_pb2
-from e2b.sandbox.commands.command_handle import (
+from vdesk.envd.rpc import handle_rpc_exception
+from vdesk.envd.process import process_pb2
+from vdesk.sandbox.commands.command_handle import (
     CommandExitException,
     CommandResult,
     Stderr,

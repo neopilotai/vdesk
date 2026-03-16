@@ -5,7 +5,7 @@ from typing import Optional, Dict, TypedDict
 from httpx._types import ProxyTypes
 from typing_extensions import Unpack
 
-from e2b.api.metadata import package_version
+from vdesk.api.metadata import package_version
 
 REQUEST_TIMEOUT: float = 60.0  # 60 seconds
 
@@ -27,22 +27,22 @@ class ApiParams(TypedDict, total=False):
     """Additional headers to send with the request."""
 
     api_key: Optional[str]
-    """E2B API Key to use for authentication, defaults to `E2B_API_KEY` environment variable."""
+    """VDESK API Key to use for authentication, defaults to `VDESK_API_KEY` environment variable."""
 
     domain: Optional[str]
-    """E2B domain to use for authentication, defaults to `E2B_DOMAIN` environment variable."""
+    """VDESK domain to use for authentication, defaults to `VDESK_DOMAIN` environment variable."""
 
     api_url: Optional[str]
     """URL to use for the API, defaults to `https://api.<domain>`. For internal use only."""
 
     debug: Optional[bool]
-    """Whether to use debug mode, defaults to `E2B_DEBUG` environment variable."""
+    """Whether to use debug mode, defaults to `VDESK_DEBUG` environment variable."""
 
     proxy: Optional[ProxyTypes]
     """Proxy to use for the request. In case of a sandbox it applies to all **requests made to the returned sandbox**."""
 
     sandbox_url: Optional[str]
-    """URL to connect to sandbox, defaults to `E2B_SANDBOX_URL` environment variable."""
+    """URL to connect to sandbox, defaults to `VDESK_SANDBOX_URL` environment variable."""
 
 
 class ConnectionConfig:
@@ -54,27 +54,27 @@ class ConnectionConfig:
 
     @staticmethod
     def _domain():
-        return os.getenv("E2B_DOMAIN") or "e2b.app"
+        return os.getenv("VDESK_DOMAIN") or "vdesk.app"
 
     @staticmethod
     def _debug():
-        return os.getenv("E2B_DEBUG", "false").lower() == "true"
+        return os.getenv("VDESK_DEBUG", "false").lower() == "true"
 
     @staticmethod
     def _api_key():
-        return os.getenv("E2B_API_KEY")
+        return os.getenv("VDESK_API_KEY")
 
     @staticmethod
     def _api_url():
-        return os.getenv("E2B_API_URL")
+        return os.getenv("VDESK_API_URL")
 
     @staticmethod
     def _sandbox_url():
-        return os.getenv("E2B_SANDBOX_URL")
+        return os.getenv("VDESK_SANDBOX_URL")
 
     @staticmethod
     def _access_token():
-        return os.getenv("E2B_ACCESS_TOKEN")
+        return os.getenv("VDESK_ACCESS_TOKEN")
 
     def __init__(
         self,
@@ -94,7 +94,7 @@ class ConnectionConfig:
         self.api_key = api_key or ConnectionConfig._api_key()
         self.access_token = access_token or ConnectionConfig._access_token()
         self.headers = headers or {}
-        self.headers["User-Agent"] = f"e2b-python-sdk/{package_version}"
+        self.headers["User-Agent"] = f"vdesk-python-sdk/{package_version}"
         self.__extra_sandbox_headers = extra_sandbox_headers or {}
 
         self.proxy = proxy
@@ -200,7 +200,7 @@ class ConnectionConfig:
     @property
     def sandbox_headers(self):
         """
-        We need this separate as we use the same header for E2B access token to API and envd access token to sandbox.
+        We need this separate as we use the same header for VDESK access token to API and envd access token to sandbox.
         """
         return {
             **self.headers,

@@ -1,9 +1,9 @@
 export const config = {
   github: {
-    url: 'https://github.com/e2b-dev/e2b',
-    api: 'https://api.github.com/repos/e2b-dev/e2b',
+    url: 'https://github.com/vdesk-dev/vdesk',
+    api: 'https://api.github.com/repos/vdesk-dev/vdesk',
   },
   twitter: {
-    url: 'https://x.com/e2b',
+    url: 'https://x.com/vdesk',
   },
 }

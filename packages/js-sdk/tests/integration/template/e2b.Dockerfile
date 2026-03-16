@@ -1,4 +1,4 @@
-FROM e2bdev/code-interpreter:latest
+FROM vdeskdev/code-interpreter:latest
 
 # Install stess-ng, a tool to load and stress computer systems
 RUN apt update

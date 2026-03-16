@@ -8,7 +8,7 @@ const mocks = vi.hoisted(() => {
   const ensureAPIKey = vi.fn(() => 'test-api-key')
   const isPipedStdin = vi.fn()
   const streamStdinChunks = vi.fn()
-  const setupSignalHandlers = vi.fn(() => () => {})
+  const setupSignalHandlers = vi.fn(() => () => { })
 
   return {
     connect,
@@ -22,7 +22,7 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('e2b', () => {
+vi.mock('vdesk', () => {
   class CommandExitError extends Error {
     exitCode: number
     constructor(exitCode: number) {
@@ -31,7 +31,7 @@ vi.mock('e2b', () => {
     }
   }
 
-  class NotFoundError extends Error {}
+  class NotFoundError extends Error { }
 
   return {
     Sandbox: {

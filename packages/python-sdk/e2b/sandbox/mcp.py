@@ -1279,9 +1279,9 @@ class McpServer(TypedDict):
     """
     This MCP Server allows interaction with the Dynatrace observability platform, brining real-time observability data directly into your development workflow.
     """
-    e2b: NotRequired[E2b]
+    vdesk: NotRequired[E2b]
     """
-    Giving Claude ability to run code with E2B via MCP (Model Context Protocol).
+    Giving Claude ability to run code with VDESK via MCP (Model Context Protocol).
     """
     edubase: NotRequired[Edubase]
     """

@@ -1,5 +1,5 @@
 import pytest
-from e2b import NotFoundException
+from vdesk import NotFoundException
 
 
 def test_read_file(sandbox):

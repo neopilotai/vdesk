@@ -1,4 +1,4 @@
-"""A client library for accessing E2B API"""
+"""A client library for accessing VDESK API"""
 
 from .client import AuthenticatedClient, Client
 

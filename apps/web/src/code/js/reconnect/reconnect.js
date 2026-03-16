@@ -1,4 +1,4 @@
-import { Sandbox } from 'e2b'
+import { Sandbox } from 'vdesk'
 
 async function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))

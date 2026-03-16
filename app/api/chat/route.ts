@@ -1,4 +1,4 @@
-import { Sandbox } from "@e2b/desktop";
+import { Sandbox } from "@vdesk/desktop";
 import { ComputerModel, SSEEvent, SSEEventType } from "@/types/api";
 import {
   ComputerInteractionStreamerFacade,
@@ -45,10 +45,10 @@ export async function POST(request: Request) {
     model = "openai",
   } = await request.json();
 
-  const apiKey = process.env.E2B_API_KEY;
+  const apiKey = process.env.VDESK_API_KEY;
 
   if (!apiKey) {
-    return new Response("E2B API key not found", { status: 500 });
+    return new Response("VDESK API key not found", { status: 500 });
   }
 
   let desktop: Sandbox | undefined;

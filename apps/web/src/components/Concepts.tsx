@@ -30,7 +30,7 @@ const concepts: BoxItem[] = [
   // {
   //   href: '/docs/code-execution',
   //   title: 'AI code execution',
-  //   description: 'E2B Sandboxex offer built-in support for running AI-generated Python, JS, TS, and R. You can customize sandbox to run almost any language.',
+  //   description: 'VDESK Sandboxex offer built-in support for running AI-generated Python, JS, TS, and R. You can customize sandbox to run almost any language.',
   //   icon: <Binary strokeWidth={1.5} className="h-6 w-6 transition-colors duration-300 fill-white/10 stroke-zinc-400 group-hover:fill-brand-300/10 group-hover:stroke-brand-400" />,
   // },
   {

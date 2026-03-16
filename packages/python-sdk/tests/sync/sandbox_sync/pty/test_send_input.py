@@ -1,5 +1,5 @@
-from e2b import Sandbox
-from e2b.sandbox.commands.command_handle import PtySize
+from vdesk import Sandbox
+from vdesk.sandbox.commands.command_handle import PtySize
 
 
 def test_send_input(sandbox: Sandbox):

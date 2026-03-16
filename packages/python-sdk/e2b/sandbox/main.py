@@ -3,10 +3,10 @@ from typing import Optional, TypedDict
 
 from packaging.version import Version
 
-from e2b.connection_config import ConnectionConfig, default_username
-from e2b.envd.api import ENVD_API_FILES_ROUTE
-from e2b.envd.versions import ENVD_DEFAULT_USER
-from e2b.sandbox.signature import get_signature
+from vdesk.connection_config import ConnectionConfig, default_username
+from vdesk.envd.api import ENVD_API_FILES_ROUTE
+from vdesk.envd.versions import ENVD_DEFAULT_USER
+from vdesk.sandbox.signature import get_signature
 
 
 class SandboxOpts(TypedDict):

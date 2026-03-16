@@ -4,7 +4,7 @@ import * as commander from 'commander'
 import { asBold, asTimestamp, withUnderline } from 'src/utils/format'
 import { wait } from 'src/utils/wait'
 import { formatEnum, Format, isRunning } from './utils'
-import { Sandbox } from 'e2b'
+import { Sandbox } from 'vdesk'
 import { ensureAPIKey } from '../../api'
 
 export const metricsCommand = new commander.Command('metrics')
@@ -122,22 +122,22 @@ function printMetric(
     metric.cpuCount += 0
     console.log(
       `${asTimestamp(time)} ${level} ` +
-        asBold('CPU') +
-        `: ${metric.cpuUsedPct.toString().padStart(5)}% / ${metric.cpuCount
-          .toString()
-          .padStart(2)} Core${multipleCores && 's'} | ` +
-        asBold('Memory') +
-        `: ${toMB(metric.memUsed).toFixed(0).padStart(5)} / ${toMB(
-          metric.memTotal
-        )
-          .toFixed(0)
-          .padEnd(5)} MiB | ` +
-        asBold('Disk') +
-        `: ${toMB(metric.diskUsed).toFixed(0).padStart(5)} / ${toMB(
-          metric.diskTotal
-        )
-          .toFixed(0)
-          .padEnd(5)} MiB`
+      asBold('CPU') +
+      `: ${metric.cpuUsedPct.toString().padStart(5)}% / ${metric.cpuCount
+        .toString()
+        .padStart(2)} Core${multipleCores && 's'} | ` +
+      asBold('Memory') +
+      `: ${toMB(metric.memUsed).toFixed(0).padStart(5)} / ${toMB(
+        metric.memTotal
+      )
+        .toFixed(0)
+        .padEnd(5)} MiB | ` +
+      asBold('Disk') +
+      `: ${toMB(metric.diskUsed).toFixed(0).padStart(5)} / ${toMB(
+        metric.diskTotal
+      )
+        .toFixed(0)
+        .padEnd(5)} MiB`
     )
   }
 }

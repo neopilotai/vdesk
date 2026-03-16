@@ -2,7 +2,7 @@
  * Execute a command in a running sandbox.
  */
 
-import { Sandbox, CommandExitError, NotFoundError } from 'e2b'
+import { Sandbox, CommandExitError, NotFoundError } from 'vdesk'
 import * as commander from 'commander'
 
 import { ensureAPIKey } from '../../api'
@@ -48,9 +48,9 @@ export const execCommand = new commander.Command('exec')
 
         if (hasPipedStdin && !sandbox.commands.supportsStdinClose) {
           console.error(
-            'e2b: Warning: Piped stdin is not supported by this sandbox version.\n' +
-              'e2b: Rebuild your template to pick up the latest sandbox version.\n' +
-              'e2b: Ignoring piped stdin.'
+            'vdesk: Warning: Piped stdin is not supported by this sandbox version.\n' +
+            'vdesk: Rebuild your template to pick up the latest sandbox version.\n' +
+            'vdesk: Ignoring piped stdin.'
           )
         }
 
@@ -174,7 +174,7 @@ async function sendStdin(sandbox: Sandbox, pid: number): Promise<void> {
         if (err instanceof NotFoundError) {
           processExited = true
           console.error(
-            'e2b: Remote command exited before stdin could be delivered.'
+            'vdesk: Remote command exited before stdin could be delivered.'
           )
           return false
         }
@@ -211,7 +211,7 @@ async function killProcessBestEffort(
     await sandbox.commands.kill(pid)
   } catch (killErr) {
     console.error(
-      'e2b: Failed to kill remote process after stdin EOF signaling failed.'
+      'vdesk: Failed to kill remote process after stdin EOF signaling failed.'
     )
     console.error(killErr)
   }

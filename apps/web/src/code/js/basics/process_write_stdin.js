@@ -1,4 +1,4 @@
-import { Sandbox } from 'e2b'
+import { Sandbox } from 'vdesk'
 
 const sandbox = await Sandbox.create({ template: 'base' })
 

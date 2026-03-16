@@ -12,7 +12,7 @@ const items: BoxItem[] = [
     href: '/docs/quickstart',
     title: 'Running your first Sandbox',
     description:
-      'Learn how to start your first E2B Sandbox with our Python or JavaScript SDK.',
+      'Learn how to start your first VDESK Sandbox with our Python or JavaScript SDK.',
     icon: (
       <PlayCircle
         strokeWidth={1.5}
@@ -22,9 +22,9 @@ const items: BoxItem[] = [
   },
   {
     href: '/docs/quickstart/connect-llms',
-    title: 'Connecting LLMs to E2B',
+    title: 'Connecting LLMs to VDESK',
     description:
-      'Connect your favorite LLM to E2B to run AI-generated code inside the Sandbox.',
+      'Connect your favorite LLM to VDESK to run AI-generated code inside the Sandbox.',
     icon: (
       <BrainCircuit
         strokeWidth={1.5}

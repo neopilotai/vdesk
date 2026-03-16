@@ -1,10 +1,10 @@
-import { Sandbox } from 'e2b'
+import { Sandbox } from 'vdesk'
 
 // 1. Start the playground sandbox
 const sandbox = await Sandbox.create({
   // You can pass your own sandbox template id
   template: 'base',
-  apiKey: process.env.E2B_API_KEY,
+  apiKey: process.env.VDESK_API_KEY,
 })
 
 // 2. Save the LLM-generated code inside the playground

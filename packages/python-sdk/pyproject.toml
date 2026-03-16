@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "e2b"
+name = "vdesk"
 version = "2.15.2"
-description = "E2B SDK that give agents cloud environments"
-authors = ["e2b <hello@e2b.dev>"]
+description = "VDESK SDK that give agents cloud environments"
+authors = ["vdesk <hello@vdesk.dev>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://e2b.dev/"
-repository = "https://github.com/e2b-dev/e2b/tree/main/packages/python-sdk"
-packages = [{ include = "e2b" }, { include = "e2b_connect" }]
+homepage = "https://vdesk.dev/"
+repository = "https://github.com/vdesk-dev/vdesk/tree/main/packages/python-sdk"
+packages = [{ include = "vdesk" }, { include = "vdesk_connect" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -39,7 +39,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.urls]
-"Bug Tracker" = "https://github.com/e2b-dev/e2b/issues"
+"Bug Tracker" = "https://github.com/vdesk-dev/vdesk/issues"
 
 [tool.basedpyright]
 reportInconsistentOverload = false
@@ -49,14 +49,14 @@ invalid-overload = "ignore"
 no-matching-overload = "ignore"
 
 [[tool.ty.overrides]]
-include = ["e2b/api/client/models/**"]
+include = ["vdesk/api/client/models/**"]
 rules = { invalid-argument-type = "ignore" }
 
 [[tool.ty.overrides]]
-include = ["e2b/envd/**/*.pyi"]
+include = ["vdesk/envd/**/*.pyi"]
 rules = { conflicting-metaclass = "ignore", unresolved-attribute = "ignore" }
 
 [tool.ruff]
 exclude = [
-    "e2b/envd/filesystem/filesystem_pb2.py"
+    "vdesk/envd/filesystem/filesystem_pb2.py"
 ]

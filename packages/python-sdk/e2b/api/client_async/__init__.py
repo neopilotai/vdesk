@@ -4,8 +4,8 @@ import logging
 
 from typing import Dict
 
-from e2b.connection_config import ConnectionConfig
-from e2b.api import limits, AsyncApiClient
+from vdesk.connection_config import ConnectionConfig
+from vdesk.api import limits, AsyncApiClient
 
 
 logger = logging.getLogger(__name__)

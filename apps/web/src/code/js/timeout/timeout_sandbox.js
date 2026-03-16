@@ -1,4 +1,4 @@
-import { Sandbox } from 'e2b'
+import { Sandbox } from 'vdesk'
 
 // Timeout 3s for the sandbox to open
 const sandbox = await Sandbox.create({

@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://e2b.dev/sitemap.xml',
+    sitemap: 'https://vdesk.dev/sitemap.xml',
   }
 }

@@ -2,12 +2,12 @@ import * as commander from 'commander'
 
 import { ensureAPIKey } from 'src/api'
 import { asBold } from 'src/utils/format'
-import * as e2b from 'e2b'
-import { NotFoundError } from 'e2b'
+import * as vdesk from 'vdesk'
+import { NotFoundError } from 'vdesk'
 
 async function pauseSandbox(sandboxID: string, apiKey: string) {
   try {
-    const paused = await e2b.Sandbox.betaPause(sandboxID, { apiKey })
+    const paused = await vdesk.Sandbox.betaPause(sandboxID, { apiKey })
     if (paused) {
       console.log(`Sandbox ${asBold(sandboxID)} has been paused`)
     } else {

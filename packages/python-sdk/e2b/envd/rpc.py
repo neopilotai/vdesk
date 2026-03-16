@@ -2,9 +2,9 @@ import base64
 
 from typing import Optional
 from packaging.version import Version
-from e2b_connect.client import Code, ConnectException
+from vdesk_connect.client import Code, ConnectException
 
-from e2b.exceptions import (
+from vdesk.exceptions import (
     SandboxException,
     InvalidArgumentException,
     NotFoundException,
@@ -13,8 +13,8 @@ from e2b.exceptions import (
     AuthenticationException,
     RateLimitException,
 )
-from e2b.connection_config import Username, default_username
-from e2b.envd.versions import ENVD_DEFAULT_USER
+from vdesk.connection_config import Username, default_username
+from vdesk.envd.versions import ENVD_DEFAULT_USER
 
 
 def handle_rpc_exception(e: Exception):

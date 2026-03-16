@@ -14,7 +14,7 @@ export class LogEntry {
     public readonly timestamp: Date,
     public readonly level: LogEntryLevel,
     public readonly message: string
-  ) {}
+  ) { }
 
   toString() {
     return `[${this.timestamp.toISOString()}] [${this.level}] ${stripAnsi(
@@ -193,7 +193,7 @@ class DefaultBuildLogger {
  *
  * @example
  * ```ts
- * import { Template, defaultBuildLogger } from 'e2b'
+ * import { Template, defaultBuildLogger } from 'vdesk'
  *
  * const template = Template().fromPythonImage()
  *

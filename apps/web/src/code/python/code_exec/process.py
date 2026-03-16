@@ -1,8 +1,8 @@
 from os import getenv
 
-from e2b import Sandbox
+from vdesk import Sandbox
 
-E2B_API_KEY = getenv("E2B_API_KEY")
+VDESK_API_KEY = getenv("VDESK_API_KEY")
 
 
 def print_out(output):
@@ -14,7 +14,7 @@ def main():
     sandbox = Sandbox(
         # You can pass your own sandbox template id
         template="base",
-        api_key=E2B_API_KEY,
+        api_key=VDESK_API_KEY,
     )
 
     # 2. Save the LLM-generated code inside the playground

@@ -1,6 +1,6 @@
 import pytest
-from e2b.exceptions import NotFoundException
-from e2b import AsyncSandbox, FileType
+from vdesk.exceptions import NotFoundException
+from vdesk import AsyncSandbox, FileType
 
 
 @pytest.mark.asyncio

@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => {
   const ensureAPIKey = vi.fn(() => 'test-api-key')
   const isPipedStdin = vi.fn()
   const streamStdinChunks = vi.fn()
-  const setupSignalHandlers = vi.fn(() => () => {})
+  const setupSignalHandlers = vi.fn(() => () => { })
 
   return {
     connect,
@@ -26,7 +26,7 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('e2b', () => {
+vi.mock('vdesk', () => {
   class CommandExitError extends Error {
     exitCode: number
     constructor(exitCode: number) {
@@ -35,7 +35,7 @@ vi.mock('e2b', () => {
     }
   }
 
-  class NotFoundError extends Error {}
+  class NotFoundError extends Error { }
 
   return {
     Sandbox: {
@@ -113,7 +113,7 @@ describe('sandbox exec closeStdin handling', () => {
     const exitSpy = vi
       .spyOn(process, 'exit')
       .mockImplementation((() => undefined) as never)
-    vi.spyOn(console, 'error').mockImplementation(() => {})
+    vi.spyOn(console, 'error').mockImplementation(() => { })
 
     const { execCommand } = await import('../../../src/commands/sandbox/exec')
     await execCommand.parseAsync(['sandbox-id', 'cat'], {
@@ -127,13 +127,13 @@ describe('sandbox exec closeStdin handling', () => {
   })
 
   test('keeps NotFoundError from closeStdin non-fatal', async () => {
-    const { NotFoundError } = await import('e2b')
+    const { NotFoundError } = await import('vdesk')
     mocks.closeStdin.mockRejectedValue(new NotFoundError('already exited'))
 
     const exitSpy = vi
       .spyOn(process, 'exit')
       .mockImplementation((() => undefined) as never)
-    vi.spyOn(console, 'error').mockImplementation(() => {})
+    vi.spyOn(console, 'error').mockImplementation(() => { })
 
     const { execCommand } = await import('../../../src/commands/sandbox/exec')
     await execCommand.parseAsync(['sandbox-id', 'cat'], {
@@ -147,7 +147,7 @@ describe('sandbox exec closeStdin handling', () => {
   })
 
   test('stops stdin streaming after NotFoundError from sendStdin', async () => {
-    const { NotFoundError } = await import('e2b')
+    const { NotFoundError } = await import('vdesk')
     mocks.sendStdin.mockRejectedValueOnce(new NotFoundError('already exited'))
     mocks.streamStdinChunks.mockImplementation(
       async (
@@ -166,7 +166,7 @@ describe('sandbox exec closeStdin handling', () => {
     const exitSpy = vi
       .spyOn(process, 'exit')
       .mockImplementation((() => undefined) as never)
-    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
 
     const { execCommand } = await import('../../../src/commands/sandbox/exec')
     await execCommand.parseAsync(['sandbox-id', 'cat'], {
@@ -177,7 +177,7 @@ describe('sandbox exec closeStdin handling', () => {
     expect(mocks.closeStdin).not.toHaveBeenCalled()
     expect(mocks.wait).toHaveBeenCalledTimes(1)
     expect(errorSpy).toHaveBeenCalledWith(
-      'e2b: Remote command exited before stdin could be delivered.'
+      'vdesk: Remote command exited before stdin could be delivered.'
     )
     expect(exitSpy).toHaveBeenCalledWith(0)
   })

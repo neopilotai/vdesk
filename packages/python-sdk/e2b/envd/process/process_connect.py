@@ -2,9 +2,9 @@
 from typing import Any, Generator, Coroutine, AsyncGenerator, Optional
 from httpcore import ConnectionPool, AsyncConnectionPool
 
-import e2b_connect as connect
+import vdesk_connect as connect
 
-from e2b.envd.process import process_pb2 as process_dot_process__pb2
+from vdesk.envd.process import process_pb2 as process_dot_process__pb2
 
 ProcessName = "process.Process"
 

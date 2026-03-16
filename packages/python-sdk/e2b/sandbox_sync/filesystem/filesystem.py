@@ -1,31 +1,31 @@
 from io import IOBase, TextIOBase
 from typing import IO, Iterator, List, Literal, Optional, overload, Union
 
-from e2b.sandbox.filesystem.filesystem import WriteEntry
+from vdesk.sandbox.filesystem.filesystem import WriteEntry
 
-import e2b_connect
+import vdesk_connect
 import httpcore
 import httpx
 from packaging.version import Version
 
-from e2b.envd.versions import ENVD_VERSION_RECURSIVE_WATCH, ENVD_DEFAULT_USER
-from e2b.exceptions import SandboxException, TemplateException, InvalidArgumentException
-from e2b.connection_config import (
+from vdesk.envd.versions import ENVD_VERSION_RECURSIVE_WATCH, ENVD_DEFAULT_USER
+from vdesk.exceptions import SandboxException, TemplateException, InvalidArgumentException
+from vdesk.connection_config import (
     ConnectionConfig,
     Username,
     default_username,
     KEEPALIVE_PING_HEADER,
     KEEPALIVE_PING_INTERVAL_SEC,
 )
-from e2b.envd.api import ENVD_API_FILES_ROUTE, handle_envd_api_exception
-from e2b.envd.filesystem import filesystem_connect, filesystem_pb2
-from e2b.envd.rpc import authentication_header, handle_rpc_exception
-from e2b.sandbox.filesystem.filesystem import (
+from vdesk.envd.api import ENVD_API_FILES_ROUTE, handle_envd_api_exception
+from vdesk.envd.filesystem import filesystem_connect, filesystem_pb2
+from vdesk.envd.rpc import authentication_header, handle_rpc_exception
+from vdesk.sandbox.filesystem.filesystem import (
     WriteInfo,
     EntryInfo,
     map_file_type,
 )
-from e2b.sandbox_sync.filesystem.watch_handle import WatchHandle
+from vdesk.sandbox_sync.filesystem.watch_handle import WatchHandle
 
 
 class Filesystem:
@@ -50,7 +50,7 @@ class Filesystem:
         self._rpc = filesystem_connect.FilesystemClient(
             envd_api_url,
             # TODO: Fix and enable compression again — the headers compression is not solved for streaming.
-            # compressor=e2b_connect.GzipCompressor,
+            # compressor=vdesk_connect.GzipCompressor,
             pool=pool,
             json=True,
             headers=connection_config.sandbox_headers,
@@ -330,8 +330,8 @@ class Filesystem:
             return True
 
         except Exception as e:
-            if isinstance(e, e2b_connect.ConnectException):
-                if e.status == e2b_connect.Code.not_found:
+            if isinstance(e, vdesk_connect.ConnectException):
+                if e.status == vdesk_connect.Code.not_found:
                     return False
             raise handle_rpc_exception(e)
 
@@ -478,8 +478,8 @@ class Filesystem:
 
             return True
         except Exception as e:
-            if isinstance(e, e2b_connect.ConnectException):
-                if e.status == e2b_connect.Code.already_exists:
+            if isinstance(e, vdesk_connect.ConnectException):
+                if e.status == vdesk_connect.Code.already_exists:
                     return False
             raise handle_rpc_exception(e)
 
@@ -503,7 +503,7 @@ class Filesystem:
         if recursive and self._envd_version < ENVD_VERSION_RECURSIVE_WATCH:
             raise TemplateException(
                 "You need to update the template to use recursive watching. "
-                "You can do this by running `e2b template build` in the directory with the template."
+                "You can do this by running `vdesk template build` in the directory with the template."
             )
 
         try:

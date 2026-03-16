@@ -29,7 +29,7 @@ Uses `ss` command to check if a port is open and listening.
 ReadyCmd that checks for the port
 Example
 ```python
-from e2b import Template, wait_for_port
+from vdesk import Template, wait_for_port
 
 template = (
     Template()
@@ -59,7 +59,7 @@ Uses `curl` to make HTTP requests and check the response status.
 ReadyCmd that checks the URL
 Example
 ```python
-from e2b import Template, wait_for_url
+from vdesk import Template, wait_for_url
 
 template = (
     Template()
@@ -88,7 +88,7 @@ Uses `pgrep` to check if a process exists.
 ReadyCmd that checks for the process
 Example
 ```python
-from e2b import Template, wait_for_process
+from vdesk import Template, wait_for_process
 
 template = (
     Template()
@@ -117,7 +117,7 @@ Uses shell test command to check file existence.
 ReadyCmd that checks for the file
 Example
 ```python
-from e2b import Template, wait_for_file
+from vdesk import Template, wait_for_file
 
 template = (
     Template()
@@ -146,7 +146,7 @@ Uses `sleep` command to wait for a fixed duration.
 ReadyCmd that waits for the specified duration
 Example
 ```python
-from e2b import Template, wait_for_timeout
+from vdesk import Template, wait_for_timeout
 
 template = (
     Template()

@@ -80,7 +80,7 @@ function customRenderToHtml(lines, language) {
           ) && // works fine for Python and JS
           line?.some(
             (token) =>
-              token.content === 'e2b' &&
+              token.content === 'vdesk' &&
               token.color === 'var(--shiki-token-text)'
           ) // works fine for Python and JS
         ) {

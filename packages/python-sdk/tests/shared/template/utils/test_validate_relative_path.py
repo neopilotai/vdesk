@@ -1,8 +1,8 @@
 import sys
 import pytest
 
-from e2b.template.utils import validate_relative_path
-from e2b.exceptions import TemplateException
+from vdesk.template.utils import validate_relative_path
+from vdesk.exceptions import TemplateException
 
 is_windows = sys.platform == "win32"
 

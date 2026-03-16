@@ -1,35 +1,35 @@
 import { spawn, spawnSync } from 'node:child_process'
 import path from 'node:path'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
-import { Sandbox } from 'e2b'
+import { Sandbox } from 'vdesk'
 import { getUserConfig } from 'src/user'
 
 type UserConfigWithDomain = NonNullable<ReturnType<typeof getUserConfig>> & {
   domain?: string
-  E2B_DOMAIN?: string
+  VDESK_DOMAIN?: string
 }
 
 const userConfig = safeGetUserConfig() as UserConfigWithDomain | null
 const domain =
-  process.env.E2B_DOMAIN ||
-  userConfig?.E2B_DOMAIN ||
+  process.env.VDESK_DOMAIN ||
+  userConfig?.VDESK_DOMAIN ||
   userConfig?.domain ||
-  'e2b.app'
-const apiKey = process.env.E2B_API_KEY || userConfig?.teamApiKey
+  'vdesk.app'
+const apiKey = process.env.VDESK_API_KEY || userConfig?.teamApiKey
 const templateId =
-  process.env.E2B_CLI_BACKEND_TEMPLATE_ID ||
-  process.env.E2B_TEMPLATE_ID ||
+  process.env.VDESK_CLI_BACKEND_TEMPLATE_ID ||
+  process.env.VDESK_TEMPLATE_ID ||
   'base'
-const isDebug = process.env.E2B_DEBUG !== undefined
+const isDebug = process.env.VDESK_DEBUG !== undefined
 const hasCreds = Boolean(apiKey)
 const shouldSkip = !hasCreds || isDebug
 const testIf = test.skipIf(shouldSkip)
 const cliPath = path.join(process.cwd(), 'dist', 'index.js')
 const sandboxTimeoutMs = parseEnvInt(
-  'E2B_CLI_BACKEND_SANDBOX_TIMEOUT_MS',
+  'VDESK_CLI_BACKEND_SANDBOX_TIMEOUT_MS',
   20_000
 )
-const perTestTimeoutMs = parseEnvInt('E2B_CLI_BACKEND_TEST_TIMEOUT_MS', 30_000)
+const perTestTimeoutMs = parseEnvInt('VDESK_CLI_BACKEND_TEST_TIMEOUT_MS', 30_000)
 const spawnTimeoutMs = perTestTimeoutMs
 
 describe('sandbox cli backend integration', () => {
@@ -146,10 +146,10 @@ function runCli(
 ): ReturnType<typeof spawnSync> {
   const env: NodeJS.ProcessEnv = {
     ...process.env,
-    E2B_DOMAIN: domain,
-    E2B_API_KEY: apiKey,
+    VDESK_DOMAIN: domain,
+    VDESK_API_KEY: apiKey,
   }
-  delete env.E2B_DEBUG
+  delete env.VDESK_DEBUG
 
   return spawnSync('node', [cliPath, ...args], {
     env,
@@ -172,10 +172,10 @@ function runCliWithPipedStdin(
 ): Promise<PipeRunResult> {
   const env: NodeJS.ProcessEnv = {
     ...process.env,
-    E2B_DOMAIN: domain,
-    E2B_API_KEY: apiKey,
+    VDESK_DOMAIN: domain,
+    VDESK_API_KEY: apiKey,
   }
-  delete env.E2B_DEBUG
+  delete env.VDESK_DEBUG
 
   return new Promise((resolve) => {
     const child = spawn('node', [cliPath, ...args], {
@@ -270,7 +270,7 @@ function safeGetUserConfig(): ReturnType<typeof getUserConfig> | null {
   try {
     return getUserConfig()
   } catch (err) {
-    console.warn(`Failed to read ~/.e2b/config.json: ${String(err)}`)
+    console.warn(`Failed to read ~/.vdesk/config.json: ${String(err)}`)
     return null
   }
 }

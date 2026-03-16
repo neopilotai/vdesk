@@ -277,7 +277,7 @@ export interface TemplateFromImage {
   fromBunImage(variant?: string): TemplateBuilder
 
   /**
-   * Start from E2B's default base image (e2bdev/base:latest).
+   * Start from VDESK's default base image (vdeskdev/base:latest).
    *
    * @example
    * ```ts
@@ -308,8 +308,8 @@ export interface TemplateFromImage {
   ): TemplateBuilder
 
   /**
-   * Start from an existing E2B template.
-   * @param template E2B template ID or alias
+   * Start from an existing VDESK template.
+   * @param template VDESK template ID or alias
    *
    * @example
    * ```ts
@@ -698,7 +698,7 @@ export interface TemplateBuilder {
    * )
    *
    * // Using ReadyCmd helpers
-   * import { waitForPort, waitForURL } from 'e2b'
+   * import { waitForPort, waitForURL } from 'vdesk'
    *
    * template.setStartCmd(
    *   'python -m http.server 8000',
@@ -726,7 +726,7 @@ export interface TemplateBuilder {
    * template.setReadyCmd('curl http://localhost:8000/health')
    *
    * // Using ReadyCmd helpers
-   * import { waitForPort, waitForFile, waitForProcess } from 'e2b'
+   * import { waitForPort, waitForFile, waitForProcess } from 'vdesk'
    *
    * template.setReadyCmd(waitForPort(3000))
    *
@@ -776,7 +776,7 @@ export interface TemplateBuilder {
  * The template can only be built in this state.
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface TemplateFinal {}
+export interface TemplateFinal { }
 
 /**
  * Configuration for a generic Docker registry with basic authentication.

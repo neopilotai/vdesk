@@ -528,7 +528,7 @@ Create a default build logger with animated timer display.
 Logger function that accepts LogEntry instances
 Example
 ```python
-from e2b import Template, default_build_logger
+from vdesk import Template, default_build_logger
 
 template = Template().from_python_image()
 
@@ -565,7 +565,7 @@ Uses `ss` command to check if a port is open and listening.
 ReadyCmd that checks for the port
 Example
 ```python
-from e2b import Template, wait_for_port
+from vdesk import Template, wait_for_port
 
 template = (
     Template()
@@ -595,7 +595,7 @@ Uses `curl` to make HTTP requests and check the response status.
 ReadyCmd that checks the URL
 Example
 ```python
-from e2b import Template, wait_for_url
+from vdesk import Template, wait_for_url
 
 template = (
     Template()
@@ -624,7 +624,7 @@ Uses `pgrep` to check if a process exists.
 ReadyCmd that checks for the process
 Example
 ```python
-from e2b import Template, wait_for_process
+from vdesk import Template, wait_for_process
 
 template = (
     Template()
@@ -653,7 +653,7 @@ Uses shell test command to check file existence.
 ReadyCmd that checks for the file
 Example
 ```python
-from e2b import Template, wait_for_file
+from vdesk import Template, wait_for_file
 
 template = (
     Template()
@@ -682,7 +682,7 @@ Uses `sleep` command to wait for a fixed duration.
 ReadyCmd that waits for the specified duration
 Example
 ```python
-from e2b import Template, wait_for_timeout
+from vdesk import Template, wait_for_timeout
 
 template = (
     Template()
@@ -1221,7 +1221,7 @@ template.set_start_cmd(
     'curl http://localhost:8000/health'
 )
 
-from e2b import wait_for_port, wait_for_url
+from vdesk import wait_for_port, wait_for_url
 
 template.set_start_cmd(
     'python -m http.server 8000',
@@ -1254,7 +1254,7 @@ Example
 ```python
 template.set_ready_cmd('curl http://localhost:8000/health')
 
-from e2b import wait_for_port, wait_for_file, wait_for_process
+from vdesk import wait_for_port, wait_for_file, wait_for_process
 
 template.set_ready_cmd(wait_for_port(3000))
 
@@ -1421,7 +1421,7 @@ Start template from a Bun base image.
 def from_base_image() -> TemplateBuilder
 ```
 
-Start template from the E2B base image (e2bdev/base:latest).
+Start template from the E2B base image (vdeskdev/base:latest).
 
 **Returns**:
 

@@ -118,7 +118,7 @@ export default withSearch(
       nextConfig,
       {
         silent: true,
-        org: 'e2b',
+        org: 'vdesk',
         project: 'docs',
       },
       {

@@ -1,6 +1,6 @@
 from typing import Dict, List, Optional
 
-from e2b.sandbox._git import (
+from vdesk.sandbox._git import (
     GitBranches,
     GitStatus,
     build_add_args,
@@ -33,13 +33,13 @@ from e2b.sandbox._git import (
     resolve_config_scope,
     with_credentials,
 )
-from e2b.exceptions import (
+from vdesk.exceptions import (
     GitAuthException,
     GitUpstreamException,
     InvalidArgumentException,
 )
-from e2b.sandbox.commands.command_handle import CommandExitException
-from e2b.sandbox_sync.commands.command import Commands
+from vdesk.sandbox.commands.command_handle import CommandExitException
+from vdesk.sandbox_sync.commands.command import Commands
 
 
 DEFAULT_GIT_ENV = {"GIT_TERMINAL_PROMPT": "0"}

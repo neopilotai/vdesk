@@ -1,16 +1,16 @@
 import status from 'statuses'
 
 /**
- * Thrown when a request to E2B API occurs.
+ * Thrown when a request to VDESK API occurs.
  */
-export class E2BRequestError extends Error {
+export class VDESKRequestError extends Error {
   constructor(message: any) {
     super(message)
-    this.name = 'E2BRequestError'
+    this.name = 'VDESKRequestError'
   }
 }
 
-export function handleE2BRequestError<T>(
+export function handleVDESKRequestError<T>(
   res: {
     data?: T | null | undefined
     error?: { code: number; message: string }
@@ -44,7 +44,7 @@ export function handleE2BRequestError<T>(
       break
   }
 
-  throw new E2BRequestError(
+  throw new VDESKRequestError(
     `${errMsg && `${errMsg}: `}[${code}] ${message && `${message}: `}${
       res.error?.message ?? 'no message'
     }`

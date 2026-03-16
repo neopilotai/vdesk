@@ -7,11 +7,11 @@ from typing import Optional, Union
 
 from httpx import AsyncBaseTransport, BaseTransport, Limits
 
-from e2b.api.client.client import AuthenticatedClient
-from e2b.api.client.types import Response
-from e2b.api.metadata import default_headers
-from e2b.connection_config import ConnectionConfig
-from e2b.exceptions import (
+from vdesk.api.client.client import AuthenticatedClient
+from vdesk.api.client.types import Response
+from vdesk.api.metadata import default_headers
+from vdesk.connection_config import ConnectionConfig
+from vdesk.exceptions import (
     AuthenticationException,
     RateLimitException,
     SandboxException,
@@ -20,9 +20,9 @@ from e2b.exceptions import (
 logger = logging.getLogger(__name__)
 
 limits = Limits(
-    max_keepalive_connections=int(os.getenv("E2B_MAX_KEEPALIVE_CONNECTIONS", "20")),
-    max_connections=int(os.getenv("E2B_MAX_CONNECTIONS", "2000")),
-    keepalive_expiry=int(os.getenv("E2B_KEEPALIVE_EXPIRY", "300")),
+    max_keepalive_connections=int(os.getenv("VDESK_MAX_KEEPALIVE_CONNECTIONS", "20")),
+    max_connections=int(os.getenv("VDESK_MAX_CONNECTIONS", "2000")),
+    keepalive_expiry=int(os.getenv("VDESK_KEEPALIVE_EXPIRY", "300")),
 )
 
 
@@ -68,7 +68,7 @@ def handle_api_exception(
 
 class ApiClient(AuthenticatedClient):
     """
-    The client for interacting with the E2B API.
+    The client for interacting with the VDESK API.
     """
 
     def __init__(
@@ -94,17 +94,17 @@ class ApiClient(AuthenticatedClient):
         if require_api_key:
             if config.api_key is None:
                 raise AuthenticationException(
-                    "API key is required, please visit the Team tab at https://e2b.dev/dashboard to get your API key. "
-                    "You can either set the environment variable `E2B_API_KEY` "
-                    'or you can pass it directly to the method like api_key="e2b_..."',
+                    "API key is required, please visit the Team tab at https://vdesk.dev/dashboard to get your API key. "
+                    "You can either set the environment variable `VDESK_API_KEY` "
+                    'or you can pass it directly to the method like api_key="vdesk_..."',
                 )
             token = config.api_key
 
         if require_access_token:
             if config.access_token is None:
                 raise AuthenticationException(
-                    "Access token is required, please visit the Personal tab at https://e2b.dev/dashboard to get your access token. "
-                    "You can set the environment variable `E2B_ACCESS_TOKEN` or pass the `access_token` in options.",
+                    "Access token is required, please visit the Personal tab at https://vdesk.dev/dashboard to get your access token. "
+                    "You can set the environment variable `VDESK_ACCESS_TOKEN` or pass the `access_token` in options.",
                 )
             token = config.access_token
 

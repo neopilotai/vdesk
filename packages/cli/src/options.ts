@@ -10,10 +10,10 @@ export const pathOption = new commander.Option(
 )
 
 export const configOption = new commander.Option(
-  '--config <e2b-toml>',
-  `specify path to the E2B config toml. By default E2B tries to find ${asBold(
-    './e2b.toml'
-  )} in root directory. We recommend using the new build system (https://e2b.dev/docs/template/defining-template) that does not use config files.`
+  '--config <vdesk-toml>',
+  `specify path to the VDESK config toml. By default VDESK tries to find ${asBold(
+    './vdesk.toml'
+  )} in root directory. We recommend using the new build system (https://vdesk.dev/docs/template/defining-template) that does not use config files.`
 )
 
 export const selectOption = new commander.Option(
@@ -28,5 +28,5 @@ export const selectMultipleOption = new commander.Option(
 
 export const teamOption = new commander.Option(
   '-t, --team <team-id>',
-  'specify the team ID that the operation will be associated with. You can find team ID in the team settings in the E2B dashboard (https://e2b.dev/dashboard?tab=team).'
+  'specify the team ID that the operation will be associated with. You can find team ID in the team settings in the VDESK dashboard (https://vdesk.dev/dashboard?tab=team).'
 )

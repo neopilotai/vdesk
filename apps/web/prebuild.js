@@ -150,22 +150,22 @@ function buildRoutes(dirName, dir, basePath = '', depth = 1) {
                 // If there are nested modules, add them after the main module's content
                 const moduleLinks = hasNestedModules
                   ? [
-                      ...(mainModuleSubModules || []),
-                      ...Object.keys(moduleHierarchy).map((nestedModule) => {
-                        return {
-                          title: formatModuleTitle(nestedModule),
-                          href: `/docs/sdk-reference/${entryName}/${version}/${module}/${nestedModule}`,
-                          links: getSubModules(
-                            entryName,
-                            `/docs/sdk-reference/${entryName}/${version}/${module}/${nestedModule}`,
-                            path.join(
-                              __dirname,
-                              `./src/app/(docs)/docs/sdk-reference/${entryName}/${version}/${module}/${nestedModule}`
-                            )
-                          ),
-                        }
-                      }),
-                    ]
+                    ...(mainModuleSubModules || []),
+                    ...Object.keys(moduleHierarchy).map((nestedModule) => {
+                      return {
+                        title: formatModuleTitle(nestedModule),
+                        href: `/docs/sdk-reference/${entryName}/${version}/${module}/${nestedModule}`,
+                        links: getSubModules(
+                          entryName,
+                          `/docs/sdk-reference/${entryName}/${version}/${module}/${nestedModule}`,
+                          path.join(
+                            __dirname,
+                            `./src/app/(docs)/docs/sdk-reference/${entryName}/${version}/${module}/${nestedModule}`
+                          )
+                        ),
+                      }
+                    }),
+                  ]
                   : mainModuleSubModules
 
                 return {
@@ -299,8 +299,7 @@ async function generateSitemap() {
     }
 
     console.log(
-      `Found ${
-        mdxFiles.length
+      `Found ${mdxFiles.length
       } total files using patterns: ${patternsWithResults.join(', ')}`
     )
 
@@ -323,7 +322,7 @@ async function generateSitemap() {
 
       const pathname = docsMatch[1] || ''
       const normalizedPath = `/docs${pathname ? `/${pathname}` : ''}`
-      const url = `https://e2b.dev${normalizedPath}`
+      const url = `https://vdesk.dev${normalizedPath}`
 
       docsPages.push({
         url,
@@ -343,14 +342,14 @@ async function generateSitemap() {
     const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${finalEntries
-  .map(
-    (entry) => `  <url>
+        .map(
+          (entry) => `  <url>
     <loc>${entry.url}</loc>
     <changefreq>weekly</changefreq>
     <priority>${entry.priority}</priority>
   </url>`
-  )
-  .join('\n')}
+        )
+        .join('\n')}
 </urlset>`
 
     const outputPath = path.join(process.cwd(), 'public', 'sitemap.xml')

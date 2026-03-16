@@ -2,7 +2,7 @@ import asyncio
 
 import pytest
 
-from e2b_connect.client import _retry
+from vdesk_connect.client import _retry
 
 
 class GoodError(Exception):

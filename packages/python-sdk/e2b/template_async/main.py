@@ -3,13 +3,13 @@ from typing import Callable, List, Optional, Union
 
 from typing_extensions import Unpack
 
-from e2b.api.client.client import AuthenticatedClient
-from e2b.connection_config import ApiParams, ConnectionConfig
-from e2b.template.consts import RESOLVE_SYMLINKS
-from e2b.template.logger import LogEntry, LogEntryEnd, LogEntryStart
-from e2b.template.main import TemplateBase, TemplateClass
-from e2b.template.types import BuildInfo, InstructionType, TemplateTag, TemplateTagInfo
-from e2b.template.utils import normalize_build_arguments, read_dockerignore
+from vdesk.api.client.client import AuthenticatedClient
+from vdesk.connection_config import ApiParams, ConnectionConfig
+from vdesk.template.consts import RESOLVE_SYMLINKS
+from vdesk.template.logger import LogEntry, LogEntryEnd, LogEntryStart
+from vdesk.template.main import TemplateBase, TemplateClass
+from vdesk.template.types import BuildInfo, InstructionType, TemplateTag, TemplateTagInfo
+from vdesk.template.utils import normalize_build_arguments, read_dockerignore
 
 from .build_api import (
     assign_tags,
@@ -23,12 +23,12 @@ from .build_api import (
     upload_file,
     wait_for_build_finish,
 )
-from e2b.api.client_async import get_api_client
+from vdesk.api.client_async import get_api_client
 
 
 class AsyncTemplate(TemplateBase):
     """
-    Asynchronous template builder for E2B sandboxes.
+    Asynchronous template builder for VDESK sandboxes.
     """
 
     @staticmethod
@@ -194,7 +194,7 @@ class AsyncTemplate(TemplateBase):
         **opts: Unpack[ApiParams],
     ) -> BuildInfo:
         """
-        Build and deploy a template to E2B infrastructure.
+        Build and deploy a template to VDESK infrastructure.
 
         :param template: The template to build
         :param name: Template name in 'name' or 'name:tag' format
@@ -207,7 +207,7 @@ class AsyncTemplate(TemplateBase):
 
         Example
         ```python
-        from e2b import AsyncTemplate
+        from vdesk import AsyncTemplate
 
         template = (
             AsyncTemplate()
@@ -294,7 +294,7 @@ class AsyncTemplate(TemplateBase):
         **opts: Unpack[ApiParams],
     ) -> BuildInfo:
         """
-        Build and deploy a template to E2B infrastructure without waiting for completion.
+        Build and deploy a template to VDESK infrastructure without waiting for completion.
 
         :param template: The template to build
         :param name: Template name in 'name' or 'name:tag' format
@@ -307,7 +307,7 @@ class AsyncTemplate(TemplateBase):
 
         Example
         ```python
-        from e2b import AsyncTemplate
+        from vdesk import AsyncTemplate
 
         template = (
             AsyncTemplate()
@@ -358,7 +358,7 @@ class AsyncTemplate(TemplateBase):
 
         Example
         ```python
-        from e2b import AsyncTemplate
+        from vdesk import AsyncTemplate
 
         build_info = await AsyncTemplate.build_in_background(template, alias='my-template')
         status = await AsyncTemplate.get_build_status(build_info, logs_offset=0)
@@ -390,7 +390,7 @@ class AsyncTemplate(TemplateBase):
 
         Example
         ```python
-        from e2b import AsyncTemplate
+        from vdesk import AsyncTemplate
 
         exists = await AsyncTemplate.exists('my-python-env')
         if exists:
@@ -415,7 +415,7 @@ class AsyncTemplate(TemplateBase):
 
         Example
         ```python
-        from e2b import AsyncTemplate
+        from vdesk import AsyncTemplate
 
         exists = await AsyncTemplate.alias_exists('my-python-env')
         if exists:
@@ -446,7 +446,7 @@ class AsyncTemplate(TemplateBase):
 
         Example
         ```python
-        from e2b import AsyncTemplate
+        from vdesk import AsyncTemplate
 
         # Assign a single tag
         result = await AsyncTemplate.assign_tags('my-template:v1.0', 'production')
@@ -479,7 +479,7 @@ class AsyncTemplate(TemplateBase):
 
         Example
         ```python
-        from e2b import AsyncTemplate
+        from vdesk import AsyncTemplate
 
         # Remove a single tag
         await AsyncTemplate.remove_tags('my-template', 'production')
@@ -511,7 +511,7 @@ class AsyncTemplate(TemplateBase):
 
         Example
         ```python
-        from e2b import AsyncTemplate
+        from vdesk import AsyncTemplate
 
         tags = await AsyncTemplate.get_tags('my-template')
         for tag in tags:

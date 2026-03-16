@@ -20,19 +20,19 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Surf - E2B Computer Use Agent",
+  title: "Surf - VDESK Computer Use Agent",
   description:
     "AI agent that interacts with a virtual desktop environment through natural language instructions",
   keywords: [
     "AI",
     "desktop",
     "automation",
-    "E2B",
+    "VDESK",
     "OpenAI",
     "virtual desktop",
     "sandbox",
   ],
-  authors: [{ name: "E2B", url: "https://e2b.dev" }],
+  authors: [{ name: "VDESK", url: "https://vdesk.dev" }],
 };
 
 export default function RootLayout({

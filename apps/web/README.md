@@ -1,6 +1,6 @@
-# E2B Web App
+# VDESK Web App
 
-This repository contains E2B Dashboard, documentation, and SDK references.
+This repository contains VDESK Dashboard, documentation, and SDK references.
 
 ## SDK References
 

@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from e2b.exceptions import SandboxException
+from vdesk.exceptions import SandboxException
 
 Stdout = str
 """

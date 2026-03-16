@@ -1,10 +1,10 @@
-import { Sandbox } from 'e2b'
+import { Sandbox } from 'vdesk'
 
 // 1. Start cloud playground
 const sandbox = await Sandbox.create({
   // $HighlightLine
   template: 'base', // or you can pass your own sandbox template id
-  apiKey: process.env.E2B_API_KEY,
+  apiKey: process.env.VDESK_API_KEY,
 })
 
 // 2. Use filesystem

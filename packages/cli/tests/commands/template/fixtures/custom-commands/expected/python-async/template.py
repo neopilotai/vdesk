@@ -1,4 +1,4 @@
-from e2b import AsyncTemplate
+from vdesk import AsyncTemplate
 
 template = (
     AsyncTemplate()

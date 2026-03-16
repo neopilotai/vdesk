@@ -1,9 +1,9 @@
 import io
 import uuid
 
-from e2b import AsyncSandbox
-from e2b.sandbox.filesystem.filesystem import WriteEntry
-from e2b.sandbox_async.filesystem.filesystem import WriteInfo
+from vdesk import AsyncSandbox
+from vdesk.sandbox.filesystem.filesystem import WriteEntry
+from vdesk.sandbox_async.filesystem.filesystem import WriteInfo
 
 
 async def test_write_text_file(async_sandbox: AsyncSandbox, debug):

@@ -1,13 +1,13 @@
-import { Sandbox } from 'e2b'
+import { Sandbox } from 'vdesk'
 
 const sandbox = await Sandbox.create({
   template: 'base',
-  envVars: {FOO: 'Hello'},
+  envVars: { FOO: 'Hello' },
 })
 
 const proc = await sandbox.process.start({
   cmd: 'echo $FOO $BAR!',
-  envVars: {BAR: 'World'}, // $HighlightLine
+  envVars: { BAR: 'World' }, // $HighlightLine
 })
 await proc.wait()
 console.log(proc.output.stdout)

@@ -1,4 +1,4 @@
-import { Sandbox } from "@e2b/desktop";
+import { Sandbox } from "@vdesk/desktop";
 import { SSEEvent, ActionResponse } from "@/types/api";
 import { ResolutionScaler } from "./resolution";
 import { logDebug } from "../logger";

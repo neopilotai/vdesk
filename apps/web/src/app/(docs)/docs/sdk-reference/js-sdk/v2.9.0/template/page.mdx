@@ -308,7 +308,7 @@ Template().fromAWSRegistry(
 fromBaseImage(): TemplateBuilder
 ```
 
-Start from E2B's default base image (e2bdev/base:latest).
+Start from E2B's default base image (vdeskdev/base:latest).
 
 ###### Returns
 
@@ -961,7 +961,7 @@ Set or update the ready check command.
 template.setReadyCmd('curl http://localhost:8000/health')
 
 // Using ReadyCmd helpers
-import { waitForPort, waitForFile, waitForProcess } from 'e2b'
+import { waitForPort, waitForFile, waitForProcess } from 'vdesk'
 
 template.setReadyCmd(waitForPort(3000))
 
@@ -1003,7 +1003,7 @@ template.setStartCmd(
 )
 
 // Using ReadyCmd helpers
-import { waitForPort, waitForURL } from 'e2b'
+import { waitForPort, waitForURL } from 'vdesk'
 
 template.setStartCmd(
   'python -m http.server 8000',
@@ -1801,7 +1801,7 @@ Set or update the ready check command.
 template.setReadyCmd('curl http://localhost:8000/health')
 
 // Using ReadyCmd helpers
-import { waitForPort, waitForFile, waitForProcess } from 'e2b'
+import { waitForPort, waitForFile, waitForProcess } from 'vdesk'
 
 template.setReadyCmd(waitForPort(3000))
 
@@ -1839,7 +1839,7 @@ template.setStartCmd(
 )
 
 // Using ReadyCmd helpers
-import { waitForPort, waitForURL } from 'e2b'
+import { waitForPort, waitForURL } from 'vdesk'
 
 template.setStartCmd(
   'python -m http.server 8000',
@@ -2028,7 +2028,7 @@ A new template builder instance
 #### Example
 
 ```ts
-import { Template } from 'e2b'
+import { Template } from 'vdesk'
 
 const template = Template()
   .fromPythonImage('3')

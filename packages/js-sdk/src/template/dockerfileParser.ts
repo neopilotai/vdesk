@@ -12,7 +12,7 @@ export interface DockerfileParseResult {
   baseImage: string
 }
 
-interface DockerfileFinalParserInterface {}
+interface DockerfileFinalParserInterface { }
 
 export interface DockerfileParserInterface {
   setWorkdir(workdir: string): DockerfileParserInterface
@@ -86,7 +86,7 @@ export function parseDockerfile(
   // Set the base image from the first FROM instruction
   const fromInstruction = fromInstructions[0]
   const argumentsData = fromInstruction.getArguments()
-  let baseImage = 'e2bdev/base' // default fallback
+  let baseImage = 'vdeskdev/base' // default fallback
   let userChanged = false
   let workdirChanged = false
   if (argumentsData && argumentsData.length > 0) {
@@ -152,7 +152,7 @@ export function parseDockerfile(
     }
   }
 
-  // Set the user and workdir to the E2B defaults
+  // Set the user and workdir to the VDESK defaults
   if (!userChanged) {
     templateBuilder.setUser('user')
   }

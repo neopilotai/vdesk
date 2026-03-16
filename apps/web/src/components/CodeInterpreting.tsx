@@ -7,7 +7,7 @@ const items: BoxItem[] = [
     href: '/docs/code-interpreting/analyze-data-with-ai',
     title: 'Analyze data with AI',
     description:
-      'Learn how to use E2B run AI-generated code to analyze yourdata.',
+      'Learn how to use VDESK run AI-generated code to analyze yourdata.',
     icon: (
       <FileQuestion
         strokeWidth={1.5}
@@ -18,7 +18,7 @@ const items: BoxItem[] = [
   {
     href: '/docs/code-interpreting/create-charts-visualizations',
     title: 'Create charts & visualizations',
-    description: 'Create interactive charts by running Python code in E2B.',
+    description: 'Create interactive charts by running Python code in VDESK.',
     icon: (
       <ChartNoAxesCombined
         strokeWidth={1.5}

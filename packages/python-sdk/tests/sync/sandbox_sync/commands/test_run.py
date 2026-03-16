@@ -1,6 +1,6 @@
 import pytest
 
-from e2b import Sandbox, TimeoutException
+from vdesk import Sandbox, TimeoutException
 
 
 def test_run(sandbox: Sandbox):

@@ -1,9 +1,9 @@
 import time
 from os import getenv
 
-from e2b import Sandbox
+from vdesk import Sandbox
 
-E2B_API_KEY = getenv("E2B_API_KEY")
+VDESK_API_KEY = getenv("VDESK_API_KEY")
 
 
 def print_stdout(output):
@@ -11,7 +11,7 @@ def print_stdout(output):
 
 
 def main():
-    sandbox = Sandbox(template="base", api_key=E2B_API_KEY)
+    sandbox = Sandbox(template="base", api_key=VDESK_API_KEY)
 
     # Start a server process in the background
     # We are not using `background_server.wait()` - that would wait for the process to finish running

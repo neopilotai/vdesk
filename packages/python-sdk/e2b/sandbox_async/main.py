@@ -8,37 +8,37 @@ import httpx
 from packaging.version import Version
 from typing_extensions import Self, Unpack
 
-from e2b.api.client.types import Unset
-from e2b.api.client_async import get_transport
-from e2b.connection_config import ApiParams, ConnectionConfig
-from e2b.envd.api import ENVD_API_HEALTH_ROUTE, ahandle_envd_api_exception
-from e2b.envd.versions import ENVD_DEBUG_FALLBACK
-from e2b.exceptions import (
+from vdesk.api.client.types import Unset
+from vdesk.api.client_async import get_transport
+from vdesk.connection_config import ApiParams, ConnectionConfig
+from vdesk.envd.api import ENVD_API_HEALTH_ROUTE, ahandle_envd_api_exception
+from vdesk.envd.versions import ENVD_DEBUG_FALLBACK
+from vdesk.exceptions import (
     SandboxException,
     format_request_timeout_error,
 )
-from e2b.sandbox.main import SandboxOpts
-from e2b.sandbox.sandbox_api import (
+from vdesk.sandbox.main import SandboxOpts
+from vdesk.sandbox.sandbox_api import (
     McpServer,
     SandboxLifecycle,
     SandboxMetrics,
     SandboxNetworkOpts,
     SnapshotInfo,
 )
-from e2b.sandbox.utils import class_method_variant
-from e2b.sandbox_async.commands.command import Commands
-from e2b.sandbox_async.commands.pty import Pty
-from e2b.sandbox_async.filesystem.filesystem import Filesystem
-from e2b.sandbox_async.git import Git
-from e2b.sandbox_async.sandbox_api import SandboxApi, SandboxInfo
-from e2b.sandbox_async.paginator import AsyncSnapshotPaginator
+from vdesk.sandbox.utils import class_method_variant
+from vdesk.sandbox_async.commands.command import Commands
+from vdesk.sandbox_async.commands.pty import Pty
+from vdesk.sandbox_async.filesystem.filesystem import Filesystem
+from vdesk.sandbox_async.git import Git
+from vdesk.sandbox_async.sandbox_api import SandboxApi, SandboxInfo
+from vdesk.sandbox_async.paginator import AsyncSnapshotPaginator
 
 logger = logging.getLogger(__name__)
 
 
 class AsyncSandbox(SandboxApi):
     """
-    E2B cloud sandbox is a secure and isolated cloud environment.
+    VDESK cloud sandbox is a secure and isolated cloud environment.
 
     The sandbox allows you to:
     - Access Linux OS
@@ -47,13 +47,13 @@ class AsyncSandbox(SandboxApi):
     - Run isolated code
     - Access the internet
 
-    Check docs [here](https://e2b.dev/docs).
+    Check docs [here](https://vdesk.dev/docs).
 
     Use the `AsyncSandbox.create()` to create a new sandbox.
 
     Example:
     ```python
-    from e2b import AsyncSandbox
+    from vdesk import AsyncSandbox
 
     sandbox = await AsyncSandbox.create()
     ```

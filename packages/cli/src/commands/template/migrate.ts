@@ -1,9 +1,9 @@
 import { select } from '@inquirer/prompts'
 import * as commander from 'commander'
-import { Template, TemplateBuilder, TemplateClass } from 'e2b'
+import { Template, TemplateBuilder, TemplateClass } from 'vdesk'
 import * as fs from 'fs'
 import * as path from 'path'
-import { E2BConfig, getConfigPath, loadConfig } from '../../config'
+import { VDESKConfig, getConfigPath, loadConfig } from '../../config'
 import { defaultDockerfileName } from '../../docker/constants'
 import { configOption, pathOption } from '../../options'
 import { getRoot } from '../../utils/filesystem'
@@ -20,7 +20,7 @@ import {
  */
 async function migrateToLanguage(
   root: string,
-  config: E2BConfig,
+  config: VDESKConfig,
   dockerfileContent: string,
   language: Language
 ): Promise<void> {
@@ -43,7 +43,7 @@ async function migrateToLanguage(
     console.warn("\nHere's an example of how to build the Docker image:")
     console.warn(
       `   ${asPrimary(
-        'docker build -f e2b.Dockerfile --platform linux/amd64 -t your-image-tag .'
+        'docker build -f vdesk.Dockerfile --platform linux/amd64 -t your-image-tag .'
       )}`
     )
     console.warn(
@@ -84,13 +84,13 @@ async function migrateToLanguage(
 
 export const migrateCommand = new commander.Command('migrate')
   .description(
-    `migrate ${asLocal('e2b.Dockerfile')} and ${asLocal(
-      'e2b.toml'
+    `migrate ${asLocal('vdesk.Dockerfile')} and ${asLocal(
+      'vdesk.toml'
     )} to new Template SDK format`
   )
   .option(
     '-d, --dockerfile <file>',
-    `specify path to Dockerfile. Defaults to ${asLocal('e2b.Dockerfile')}`
+    `specify path to Dockerfile. Defaults to ${asLocal('vdesk.Dockerfile')}`
   )
   .addOption(configOption)
   .option(
@@ -125,7 +125,7 @@ export const migrateCommand = new commander.Command('migrate')
         const { dockerfileContent, dockerfilePath, dockerfileRelativePath } =
           getDockerfile(root, opts.dockerfile)
 
-        let config: E2BConfig = {
+        let config: VDESKConfig = {
           template_id: 'name-your-template',
           dockerfile: defaultDockerfileName,
         }
@@ -188,7 +188,7 @@ export const migrateCommand = new commander.Command('migrate')
           })
         }
 
-        // Rename e2b.toml if it exists
+        // Rename vdesk.toml if it exists
         if (fs.existsSync(configPath)) {
           const oldConfigPath = `${configPath}.old`
           fs.renameSync(configPath, oldConfigPath)
@@ -212,7 +212,7 @@ export const migrateCommand = new commander.Command('migrate')
         console.log('\n🔨 To get started with your template:')
         if (language === Language.TypeScript) {
           console.log(
-            `   ${asPrimary('npm install e2b')} (install e2b dependency)`
+            `   ${asPrimary('npm install vdesk')} (install vdesk dependency)`
           )
           console.log(
             `   ${asPrimary('npx tsx build.dev.ts')} (run development build)`
@@ -222,7 +222,7 @@ export const migrateCommand = new commander.Command('migrate')
           )
         } else {
           console.log(
-            `   ${asPrimary('pip install e2b')} (install e2b dependency)`
+            `   ${asPrimary('pip install vdesk')} (install vdesk dependency)`
           )
           console.log(
             `   ${asPrimary('python build_dev.py')} (run development build)`
@@ -234,7 +234,7 @@ export const migrateCommand = new commander.Command('migrate')
 
         console.log(
           `\nLearn more about Template SDK: ${asPrimary(
-            'https://e2b.dev/docs'
+            'https://vdesk.dev/docs'
           )}\n`
         )
         success = true

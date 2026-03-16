@@ -13,7 +13,7 @@ async function isValidPath(pathname: string) {
   try {
     const baseUrl = process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
-      : 'https://e2b.dev'
+      : 'https://vdesk.dev'
     const sitemapUrl = `${baseUrl}/sitemap.xml`
 
     // NOTE: Expects all valid paths to be in one sitemap.xml file
@@ -27,7 +27,7 @@ async function isValidPath(pathname: string) {
     }
 
     const sitemapXml = await response.text()
-    const targetUrl = `https://e2b.dev${pathname}`
+    const targetUrl = `https://vdesk.dev${pathname}`
     const isValid = sitemapXml.includes(`<loc>${targetUrl}</loc>`)
 
     return isValid
@@ -40,7 +40,7 @@ async function isValidPath(pathname: string) {
 export async function generateMetadata() {
   const headerList = headers()
   const pathname = headerList.get('x-middleware-pathname')
-  const shouldIndex = headerList.get('x-e2b-should-index')
+  const shouldIndex = headerList.get('x-vdesk-should-index')
 
   let isValid = false
 
@@ -50,26 +50,26 @@ export async function generateMetadata() {
 
   return {
     title: {
-      template: '%s - E2B',
-      default: 'SDK Reference - E2B',
+      template: '%s - VDESK',
+      default: 'SDK Reference - VDESK',
     },
     description:
-      'SDK Reference Documentation for E2B JavaScript and Python SDKs. API Methods, Classes, and Examples for Integrating Secure Cloud Sandboxes.',
+      'SDK Reference Documentation for VDESK JavaScript and Python SDKs. API Methods, Classes, and Examples for Integrating Secure Cloud Sandboxes.',
     twitter: {
-      title: 'SDK Reference - E2B',
+      title: 'SDK Reference - VDESK',
       description:
-        'SDK Reference Documentation for E2B JavaScript and Python SDKs. API Methods, Classes, and Examples for Integrating Secure Cloud Sandboxes.',
+        'SDK Reference Documentation for VDESK JavaScript and Python SDKs. API Methods, Classes, and Examples for Integrating Secure Cloud Sandboxes.',
     },
     openGraph: {
-      title: 'SDK Reference - E2B',
+      title: 'SDK Reference - VDESK',
       description:
-        'SDK Reference Documentation for E2B JavaScript and Python SDKs. API Methods, Classes, and Examples for Integrating Secure Cloud Sandboxes.',
+        'SDK Reference Documentation for VDESK JavaScript and Python SDKs. API Methods, Classes, and Examples for Integrating Secure Cloud Sandboxes.',
     },
     alternates:
       isValid && pathname !== ''
         ? {
-            canonical: `https://e2b.dev${pathname}`,
-          }
+          canonical: `https://vdesk.dev${pathname}`,
+        }
         : undefined,
     robots:
       isValid && shouldIndex

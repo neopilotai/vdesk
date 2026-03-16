@@ -1,4 +1,4 @@
-import { Template } from 'e2b'
+import { Template } from 'vdesk'
 
 export const template = Template()
   .fromImage('node:18')

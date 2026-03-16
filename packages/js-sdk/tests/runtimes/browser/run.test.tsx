@@ -7,14 +7,14 @@ import { useEffect, useState } from 'react'
 import { Sandbox } from '../../../src'
 import { template } from '../../template'
 
-function E2BTest() {
+function VDESKTest() {
   const [text, setText] = useState<string>()
 
   useEffect(() => {
     const getText = async () => {
       const sandbox = await Sandbox.create(template, {
-        apiKey: inject('E2B_API_KEY'),
-        domain: inject('E2B_DOMAIN'),
+        apiKey: inject('VDESK_API_KEY'),
+        domain: inject('VDESK_DOMAIN'),
       })
 
       try {
@@ -32,7 +32,7 @@ function E2BTest() {
   return <div>{text}</div>
 }
 test('browser test', async () => {
-  const { getByText } = render(<E2BTest />)
+  const { getByText } = render(<VDESKTest />)
   await waitFor(
     () => expect.element(getByText('Hello World')).toBeInTheDocument(),
     {

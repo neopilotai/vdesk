@@ -1,4 +1,4 @@
-import { Sandbox } from 'e2b'
+import { Sandbox } from 'vdesk'
 
 // 1. Start the playground sandbox
 const sandbox = await Sandbox.create({

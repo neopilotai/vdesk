@@ -35,7 +35,7 @@ Build and deploy a template to E2B infrastructure.
 - `on_build_logs`: Callback function to receive build logs during the build process
 Example
 ```python
-from e2b import AsyncTemplate
+from vdesk import AsyncTemplate
 
 template = (
     AsyncTemplate()
@@ -82,7 +82,7 @@ Build and deploy a template to E2B infrastructure without waiting for completion
 BuildInfo containing the template ID and build ID
 Example
 ```python
-from e2b import AsyncTemplate
+from vdesk import AsyncTemplate
 
 template = (
     AsyncTemplate()
@@ -121,7 +121,7 @@ Get the status of a build.
 TemplateBuild containing the build status and logs
 Example
 ```python
-from e2b import AsyncTemplate
+from vdesk import AsyncTemplate
 
 build_info = await AsyncTemplate.build_in_background(template, alias='my-template')
 status = await AsyncTemplate.get_build_status(build_info, logs_offset=0)
@@ -146,7 +146,7 @@ Check if a template with the given alias exists.
 True if the alias exists, False otherwise
 Example
 ```python
-from e2b import AsyncTemplate
+from vdesk import AsyncTemplate
 
 exists = await AsyncTemplate.alias_exists('base')
 if exists:

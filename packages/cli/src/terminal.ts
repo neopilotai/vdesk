@@ -1,4 +1,4 @@
-import * as e2b from 'e2b'
+import * as vdesk from 'vdesk'
 
 const FLUSH_INPUT_INTERVAL_MS = 10
 
@@ -9,7 +9,7 @@ function getStdoutSize() {
   }
 }
 
-export async function spawnConnectedTerminal(sandbox: e2b.Sandbox) {
+export async function spawnConnectedTerminal(sandbox: vdesk.Sandbox) {
   // Clear local terminal emulator before starting terminal
   // process.stdout.write('\x1b[2J\x1b[0f')
 
@@ -42,7 +42,7 @@ export async function spawnConnectedTerminal(sandbox: e2b.Sandbox) {
   try {
     await terminalSession.wait()
   } catch (err: any) {
-    if (err instanceof e2b.CommandExitError) {
+    if (err instanceof vdesk.CommandExitError) {
       if (err.exitCode === -1 && err.error === 'signal: killed') {
         return
       }
@@ -70,7 +70,7 @@ class BatchedQueue<T> {
   constructor(
     private flushHandler: (batch: T[]) => Promise<void>,
     private flushIntervalMs: number
-  ) {}
+  ) { }
 
   push(item: T) {
     this.queue.push(item)

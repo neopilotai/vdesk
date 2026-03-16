@@ -1,6 +1,6 @@
 import uuid
 
-from e2b import Sandbox
+from vdesk import Sandbox
 
 
 def test_make_directory(sandbox: Sandbox):

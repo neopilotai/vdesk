@@ -53,7 +53,7 @@ export const docRoutes: NavGroup[] = [
             href: '/docs/quickstart',
           },
           {
-            title: 'Connect LLMs to E2B',
+            title: 'Connect LLMs to VDESK',
             href: '/docs/quickstart/connect-llms',
           },
           {
@@ -73,7 +73,7 @@ export const docRoutes: NavGroup[] = [
       },
       {
         title: 'Cookbook',
-        href: 'https://github.com/e2b-dev/e2b-cookbook',
+        href: 'https://github.com/vdesk-dev/vdesk-cookbook',
         icon: <Braces size={16} />,
       },
       {
@@ -91,7 +91,7 @@ export const docRoutes: NavGroup[] = [
   //       href: '/docs/hello-world/js',
   //     },
   //     {
-  //       title: 'Connecting LLMs to E2B',
+  //       title: 'Connecting LLMs to VDESK',
   //       links: [
   //         {
   //           title: 'OpenAI',

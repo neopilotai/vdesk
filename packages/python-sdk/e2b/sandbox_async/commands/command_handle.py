@@ -10,16 +10,16 @@ from typing import (
     Coroutine,
 )
 
-from e2b.envd.rpc import handle_rpc_exception
-from e2b.envd.process import process_pb2
-from e2b.sandbox.commands.command_handle import (
+from vdesk.envd.rpc import handle_rpc_exception
+from vdesk.envd.process import process_pb2
+from vdesk.sandbox.commands.command_handle import (
     CommandExitException,
     CommandResult,
     Stderr,
     Stdout,
     PtyOutput,
 )
-from e2b.sandbox_async.utils import OutputHandler
+from vdesk.sandbox_async.utils import OutputHandler
 
 
 class AsyncCommandHandle:

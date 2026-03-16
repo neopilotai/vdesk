@@ -1,6 +1,6 @@
 import pytest
 
-from e2b.exceptions import GitUpstreamException
+from vdesk.exceptions import GitUpstreamException
 
 
 @pytest.mark.skip_debug()

@@ -3,12 +3,12 @@ import asyncio
 import httpx
 import pytest
 
-from e2b import AsyncSandbox, SandboxQuery, SandboxState
-from e2b.api.client.models import (
+from vdesk import AsyncSandbox, SandboxQuery, SandboxState
+from vdesk.api.client.models import (
     NewSandbox,
     SandboxAutoResumeConfig,
 )
-from e2b.sandbox.sandbox_api import get_auto_resume_enabled
+from vdesk.sandbox.sandbox_api import get_auto_resume_enabled
 
 
 @pytest.mark.skip_debug()

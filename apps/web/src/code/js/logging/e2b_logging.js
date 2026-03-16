@@ -1,4 +1,4 @@
-import { Sandbox } from 'e2b'
+import { Sandbox } from 'vdesk'
 
 const logger = {
   debug: console.debug, // log debug messages, in default logger this is noop
@@ -10,6 +10,6 @@ const logger = {
 
 const sandbox = await Sandbox.create({
   template: 'base',
-  apiKey: process.env.E2B_API_KEY,
+  apiKey: process.env.VDESK_API_KEY,
   logger, // $HighlightLine
 })

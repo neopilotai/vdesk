@@ -4,21 +4,21 @@ from typing import Callable, Optional, List, Union
 
 import httpx
 
-from e2b.api import handle_api_exception
-from e2b.api.client.api.templates import (
+from vdesk.api import handle_api_exception
+from vdesk.api.client.api.templates import (
     post_v3_templates,
     get_templates_template_id_files_hash,
     post_v_2_templates_template_id_builds_build_id,
     get_templates_template_id_builds_build_id_status,
     get_templates_aliases_alias,
 )
-from e2b.api.client.api.tags import (
+from vdesk.api.client.api.tags import (
     post_templates_tags,
     delete_templates_tags,
     get_templates_template_id_tags,
 )
-from e2b.api.client.client import AuthenticatedClient
-from e2b.api.client.models import (
+from vdesk.api.client.client import AuthenticatedClient
+from vdesk.api.client.models import (
     TemplateBuildRequestV3,
     TemplateBuildStartV2,
     TemplateBuildFileUpload,
@@ -26,10 +26,10 @@ from e2b.api.client.models import (
     AssignTemplateTagsRequest,
     DeleteTemplateTagsRequest,
 )
-from e2b.api.client.types import UNSET, Unset
-from e2b.exceptions import BuildException, FileUploadException, TemplateException
-from e2b.template.logger import LogEntry
-from e2b.template.types import (
+from vdesk.api.client.types import UNSET, Unset
+from vdesk.exceptions import BuildException, FileUploadException, TemplateException
+from vdesk.template.logger import LogEntry
+from vdesk.template.types import (
     TemplateType,
     BuildStatusReason,
     TemplateBuildStatus,
@@ -37,7 +37,7 @@ from e2b.template.types import (
     TemplateTag,
     TemplateTagInfo,
 )
-from e2b.template.utils import get_build_step_index, tar_file_stream
+from vdesk.template.utils import get_build_step_index, tar_file_stream
 
 
 def request_build(

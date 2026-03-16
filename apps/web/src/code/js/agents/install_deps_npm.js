@@ -1,9 +1,9 @@
-import { Sandbox } from 'e2b'
+import { Sandbox } from 'vdesk'
 
 // 1. Start the playground sandbox
 const sandbox = await Sandbox.create({
   template: 'base', // $HighlightLine
-  apiKey: process.env.E2B_API_KEY,
+  apiKey: process.env.VDESK_API_KEY,
 })
 
 // 2. Install packages using NPM inside the /code directory

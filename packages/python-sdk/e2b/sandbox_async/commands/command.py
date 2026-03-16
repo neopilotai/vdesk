@@ -1,22 +1,22 @@
 from typing import Dict, List, Literal, Optional, Union, overload
 
-import e2b_connect
+import vdesk_connect
 import httpcore
 from packaging.version import Version
-from e2b.connection_config import (
+from vdesk.connection_config import (
     ConnectionConfig,
     Username,
     KEEPALIVE_PING_HEADER,
     KEEPALIVE_PING_INTERVAL_SEC,
 )
-from e2b.envd.process import process_connect, process_pb2
-from e2b.envd.rpc import authentication_header, handle_rpc_exception
-from e2b.envd.versions import ENVD_COMMANDS_STDIN
-from e2b.exceptions import SandboxException
-from e2b.sandbox.commands.main import ProcessInfo
-from e2b.sandbox.commands.command_handle import CommandResult
-from e2b.sandbox_async.commands.command_handle import AsyncCommandHandle, Stderr, Stdout
-from e2b.sandbox_async.utils import OutputHandler
+from vdesk.envd.process import process_connect, process_pb2
+from vdesk.envd.rpc import authentication_header, handle_rpc_exception
+from vdesk.envd.versions import ENVD_COMMANDS_STDIN
+from vdesk.exceptions import SandboxException
+from vdesk.sandbox.commands.main import ProcessInfo
+from vdesk.sandbox.commands.command_handle import CommandResult
+from vdesk.sandbox_async.commands.command_handle import AsyncCommandHandle, Stderr, Stdout
+from vdesk.sandbox_async.utils import OutputHandler
 
 
 class Commands:
@@ -36,7 +36,7 @@ class Commands:
         self._rpc = process_connect.ProcessClient(
             envd_api_url,
             # TODO: Fix and enable compression again — the headers compression is not solved for streaming.
-            # compressor=e2b_connect.GzipCompressor,
+            # compressor=vdesk_connect.GzipCompressor,
             async_pool=pool,
             json=True,
             headers=connection_config.sandbox_headers,
@@ -100,8 +100,8 @@ class Commands:
             )
             return True
         except Exception as e:
-            if isinstance(e, e2b_connect.ConnectException):
-                if e.status == e2b_connect.Code.not_found:
+            if isinstance(e, vdesk_connect.ConnectException):
+                if e.status == vdesk_connect.Code.not_found:
                     return False
             raise handle_rpc_exception(e)
 

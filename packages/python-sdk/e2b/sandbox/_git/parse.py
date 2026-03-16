@@ -1,8 +1,8 @@
 from typing import List, Optional
 from urllib.parse import urlparse
 
-from e2b.exceptions import InvalidArgumentException
-from e2b.sandbox._git.types import GitBranches, GitFileStatus, GitStatus
+from vdesk.exceptions import InvalidArgumentException
+from vdesk.sandbox._git.types import GitBranches, GitFileStatus, GitStatus
 
 
 def derive_repo_dir_from_url(url: str) -> Optional[str]:

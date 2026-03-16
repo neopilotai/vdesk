@@ -1,5 +1,5 @@
-from e2b import Sandbox, SandboxState
-from e2b.sandbox.sandbox_api import SandboxQuery
+from vdesk import Sandbox, SandboxState
+from vdesk.sandbox.sandbox_api import SandboxQuery
 
 sandbox = Sandbox(
     template="base",

@@ -19,11 +19,11 @@ export async function GET(
   }
 
   if (!apiKey) {
-    return NextResponse.json({ error: 'Missing E2B API Key' }, { status: 400 })
+    return NextResponse.json({ error: 'Missing VDESK API Key' }, { status: 400 })
   }
 
   if (!(await verifySandbox(apiKey, sandboxId))) {
-    return NextResponse.json({ error: 'Invalid E2B API Key' }, { status: 401 })
+    return NextResponse.json({ error: 'Invalid VDESK API Key' }, { status: 401 })
   }
 
   const { data: stream, error } = await supabase

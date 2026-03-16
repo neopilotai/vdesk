@@ -1,19 +1,19 @@
 import urllib.parse
 from typing import Optional, List
 
-from e2b.api import handle_api_exception
-from e2b.api.client.api.sandboxes import get_v2_sandboxes
-from e2b.api.client.api.snapshots import get_snapshots
-from e2b.api.client.models.error import Error
-from e2b.api.client.types import UNSET
-from e2b.exceptions import SandboxException
-from e2b.sandbox.sandbox_api import (
+from vdesk.api import handle_api_exception
+from vdesk.api.client.api.sandboxes import get_v2_sandboxes
+from vdesk.api.client.api.snapshots import get_snapshots
+from vdesk.api.client.models.error import Error
+from vdesk.api.client.types import UNSET
+from vdesk.exceptions import SandboxException
+from vdesk.sandbox.sandbox_api import (
     SandboxPaginatorBase,
     SandboxInfo,
     SnapshotPaginatorBase,
     SnapshotInfo,
 )
-from e2b.api.client_sync import get_api_client
+from vdesk.api.client_sync import get_api_client
 
 
 class SandboxPaginator(SandboxPaginatorBase):

@@ -4,10 +4,10 @@ from typing import Any, Dict, List, Literal, Optional, TypedDict, Union, cast
 
 from typing_extensions import NotRequired, Unpack
 
-from e2b import ConnectionConfig
-from e2b.api.client.models import ListedSandbox, SandboxDetail, SandboxState
-from e2b.connection_config import ApiParams
-from e2b.sandbox.mcp import McpServer as BaseMcpServer
+from vdesk import ConnectionConfig
+from vdesk.api.client.models import ListedSandbox, SandboxDetail, SandboxState
+from vdesk.connection_config import ApiParams
+from vdesk.sandbox.mcp import McpServer as BaseMcpServer
 
 
 class GitHubMcpServerConfig(TypedDict):
@@ -69,7 +69,7 @@ class SandboxNetworkOpts(TypedDict):
     mask_request_host: NotRequired[str]
     """
     Allows specifying a custom host mask for all sandbox requests.
-    Supports ${PORT} variable. Defaults to "${PORT}-sandboxid.e2b.app".
+    Supports ${PORT} variable. Defaults to "${PORT}-sandboxid.vdesk.app".
 
     Examples:
     - Custom subdomain: `"${PORT}-myapp.example.com"`

@@ -1,6 +1,6 @@
 from typing import Optional
 
-from e2b.exceptions import InvalidArgumentException
+from vdesk.exceptions import InvalidArgumentException
 
 
 def resolve_config_scope(

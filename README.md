@@ -1,11 +1,11 @@
-![E2B Surf Preview Light](/readme-assets/surf-light.png#gh-light-mode-only)
-![E2B Surf Preview Dark](/readme-assets/surf-dark.png#gh-dark-mode-only)
+![VDESK Surf Preview Light](/readme-assets/surf-light.png#gh-light-mode-only)
+![VDESK Surf Preview Dark](/readme-assets/surf-dark.png#gh-dark-mode-only)
 
-# 🏄 Surf - OpenAI's Computer Use Agent + E2B Desktop
+# 🏄 Surf - OpenAI's Computer Use Agent + VDESK Desktop
 
-A Next.js application that allows AI to interact with a virtual desktop environment. This project integrates [E2B's desktop sandbox](https://github.com/e2b-dev/desktop) with OpenAI's API to create an AI agent that can perform tasks on a virtual computer through natural language instructions.
+A Next.js application that allows AI to interact with a virtual desktop environment. This project integrates [VDESK's desktop sandbox](https://github.com/vdesk-dev/desktop) with OpenAI's API to create an AI agent that can perform tasks on a virtual computer through natural language instructions.
 
-[E2B](https://e2b.dev) is an open source isolated virtual computer in the cloud made for AI use cases.
+[VDESK](https://vdesk.dev) is an open source isolated virtual computer in the cloud made for AI use cases.
 
 ## Overview
 
@@ -25,14 +25,14 @@ The application uses Server-Sent Events (SSE) to stream AI responses and actions
 The application consists of several key components:
 
 1. **Frontend UI (Next.js)**: Provides the user interface with a virtual desktop view and chat interface
-2. [**E2B Desktop Sandbox**](https://github.com/e2b-dev/desktop): Creates and manages virtual desktop environments
+2. [**VDESK Desktop Sandbox**](https://github.com/vdesk-dev/desktop): Creates and manages virtual desktop environments
 3. [**OpenAI Computer Use**](https://platform.openai.com/docs/guides/tools-computer-use): Processes user instructions and generates actions for the AI agent
 4. **Streaming API**: Handles real-time communication between the frontend and backend
 
 ### Core Flow
 
 1. User starts a new sandbox instance
-2. E2B creates a virtual desktop and provides a URL for streaming
+2. VDESK creates a virtual desktop and provides a URL for streaming
 3. User sends instructions via the chat interface
 4. Backend processes the instructions using OpenAI's API
 5. AI generates actions (clicks, typing, etc.) to perform on the virtual desktop
@@ -45,14 +45,14 @@ Before starting, you'll need:
 
 1. [Node.js](https://nodejs.org/) (version specified in package.json)
 2. [npm](https://www.npmjs.com/) (comes with Node.js)
-3. An [E2B API key](https://e2b.dev/docs/getting-started/api-key)
+3. An [VDESK API key](https://vdesk.dev/docs/getting-started/api-key)
 4. An [OpenAI API key](https://platform.openai.com/api-keys)
 
 ## Setup Instructions
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/e2b-dev/surf
+git clone https://github.com/vdesk-dev/surf
 cd surf
 ```
 
@@ -66,7 +66,7 @@ npm install
 Create a `.env.local` file in the root directory based on the provided `.env.example`:
 
 ```env
-E2B_API_KEY=your_e2b_api_key
+VDESK_API_KEY=your_vdesk_api_key
 OPENAI_API_KEY=your_openai_api_key
 ```
 
@@ -116,7 +116,7 @@ Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
 The application uses several key dependencies:
 
 - **Next.js**: React framework for the frontend
-- **@e2b/desktop**: SDK for creating and managing desktop sandbox environments
+- **@vdesk/desktop**: SDK for creating and managing desktop sandbox environments
 - **OpenAI**: SDK for interacting with OpenAI's API
 - **Tailwind CSS**: Utility-first CSS framework for styling
 - **Framer Motion**: Library for animations
@@ -135,7 +135,7 @@ See `package.json` for a complete list of dependencies.
 
 ## Troubleshooting
 
-- **Sandbox not starting**: Verify your E2B API key is correct in `.env.local`
+- **Sandbox not starting**: Verify your VDESK API key is correct in `.env.local`
 - **AI not responding**: Check that your OpenAI API key is valid and has access to the required models
 - **Actions not working**: Ensure the sandbox is running and the AI has proper instructions
 
@@ -150,6 +150,6 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 ## Support
 
 If you encounter any issues or have questions:
-- Check the [E2B Documentation](https://e2b.dev/docs)
-- Join the [E2B Discord](https://discord.gg/U7KEcGErtQ)
-- Open an [issue](https://github.com/e2b-dev/computer-use-app/issues)
+- Check the [VDESK Documentation](https://vdesk.dev/docs)
+- Join the [VDESK Discord](https://discord.gg/U7KEcGErtQ)
+- Open an [issue](https://github.com/vdesk-dev/computer-use-app/issues)

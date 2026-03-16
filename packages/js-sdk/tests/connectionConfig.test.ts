@@ -6,9 +6,9 @@ let originalEnv: { [key: string]: string | undefined }
 
 beforeEach(() => {
   originalEnv = {
-    E2B_API_URL: process.env.E2B_API_URL,
-    E2B_DOMAIN: process.env.E2B_DOMAIN,
-    E2B_DEBUG: process.env.E2B_DEBUG,
+    VDESK_API_URL: process.env.VDESK_API_URL,
+    VDESK_DOMAIN: process.env.VDESK_DOMAIN,
+    VDESK_DEBUG: process.env.VDESK_DEBUG,
   }
 })
 
@@ -25,12 +25,12 @@ afterEach(() => {
 
 test('api_url defaults correctly', () => {
   // Ensure no env vars interfere
-  delete process.env.E2B_API_URL
-  delete process.env.E2B_DOMAIN
-  delete process.env.E2B_DEBUG
+  delete process.env.VDESK_API_URL
+  delete process.env.VDESK_DOMAIN
+  delete process.env.VDESK_DEBUG
 
   const config = new ConnectionConfig()
-  assert.equal(config.apiUrl, 'https://api.e2b.app')
+  assert.equal(config.apiUrl, 'https://api.vdesk.app')
 })
 
 test('api_url in args', () => {
@@ -39,14 +39,14 @@ test('api_url in args', () => {
 })
 
 test('api_url in env var', () => {
-  process.env.E2B_API_URL = 'http://localhost:8080'
+  process.env.VDESK_API_URL = 'http://localhost:8080'
 
   const config = new ConnectionConfig()
   assert.equal(config.apiUrl, 'http://localhost:8080')
 })
 
 test('api_url has correct priority', () => {
-  process.env.E2B_API_URL = 'http://localhost:1111'
+  process.env.VDESK_API_URL = 'http://localhost:1111'
 
   const config = new ConnectionConfig({ apiUrl: 'http://localhost:8080' })
   assert.equal(config.apiUrl, 'http://localhost:8080')

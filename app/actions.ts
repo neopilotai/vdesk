@@ -1,7 +1,7 @@
 "use server";
 
 import { SANDBOX_TIMEOUT_MS } from "@/lib/config";
-import { Sandbox } from "@e2b/desktop";
+import { Sandbox } from "@vdesk/desktop";
 
 export async function increaseTimeout(sandboxId: string) {
   try {

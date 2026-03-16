@@ -1,8 +1,8 @@
 from typing import Optional
 from urllib.parse import urlparse, urlunparse
 
-from e2b.exceptions import InvalidArgumentException
-from e2b.sandbox.commands.command_handle import CommandExitException
+from vdesk.exceptions import InvalidArgumentException
+from vdesk.sandbox.commands.command_handle import CommandExitException
 
 
 def with_credentials(url: str, username: Optional[str], password: Optional[str]) -> str:

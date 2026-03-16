@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum
 
-from e2b.envd.filesystem.filesystem_pb2 import EventType
+from vdesk.envd.filesystem.filesystem_pb2 import EventType
 
 
 class FilesystemEventType(Enum):

@@ -1,4 +1,4 @@
-## e2b sandbox
+## vdesk sandbox
 
 
 work with sandboxes
@@ -6,9 +6,9 @@ work with sandboxes
 ### Usage
 
 ```bash
-e2b sandbox [options] [command]
+vdesk sandbox [options] [command]
 ```
-## e2b sandbox connect
+## vdesk sandbox connect
 
 
 connect terminal to already running sandbox
@@ -16,11 +16,11 @@ connect terminal to already running sandbox
 ### Usage
 
 ```bash
-e2b sandbox connect [options] <sandboxID>
+vdesk sandbox connect [options] <sandboxID>
 ```
 
 
-## e2b sandbox list
+## vdesk sandbox list
 
 
 list all sandboxes, by default it list only running ones
@@ -28,7 +28,7 @@ list all sandboxes, by default it list only running ones
 ### Usage
 
 ```bash
-e2b sandbox list [options]
+vdesk sandbox list [options]
 ```
 
 ### Options
@@ -40,7 +40,7 @@ e2b sandbox list [options]
  - `-f, --format <format>: output format, eg. json, pretty `
 
 
-## e2b sandbox kill
+## vdesk sandbox kill
 
 
 kill sandbox
@@ -48,7 +48,7 @@ kill sandbox
 ### Usage
 
 ```bash
-e2b sandbox kill [options] [sandboxIDs...]
+vdesk sandbox kill [options] [sandboxIDs...]
 ```
 
 ### Options
@@ -59,7 +59,7 @@ e2b sandbox kill [options] [sandboxIDs...]
  - `-m, --metadata <metadata>: when used with -a/--all flag, filter by metadata, eg. key1=value1 `
 
 
-## e2b sandbox create
+## vdesk sandbox create
 
 
 create sandbox and connect terminal to it
@@ -67,18 +67,18 @@ create sandbox and connect terminal to it
 ### Usage
 
 ```bash
-e2b sandbox create [options] [template]
+vdesk sandbox create [options] [template]
 ```
 
 ### Options
 
 
  - `-p, --path <path>: change root directory where command is executed to <path> directory `
- - `--config <e2b-toml>: specify path to the E2B config toml. By default E2B tries to find ./e2b.toml in root directory. We recommend using the new build system (https://e2b.dev/docs/template/defining-template) that does not use config files. `
+ - `--config <vdesk-toml>: specify path to the E2B config toml. By default E2B tries to find ./vdesk.toml in root directory. We recommend using the new build system (https://vdesk.dev/docs/template/defining-template) that does not use config files. `
  - `-d, --detach: create sandbox without connecting terminal to it `
 
 
-## e2b sandbox spawn
+## vdesk sandbox spawn
 
 
 create sandbox and connect terminal to it
@@ -86,18 +86,18 @@ create sandbox and connect terminal to it
 ### Usage
 
 ```bash
-e2b sandbox spawn [options] [template]
+vdesk sandbox spawn [options] [template]
 ```
 
 ### Options
 
 
  - `-p, --path <path>: change root directory where command is executed to <path> directory `
- - `--config <e2b-toml>: specify path to the E2B config toml. By default E2B tries to find ./e2b.toml in root directory. We recommend using the new build system (https://e2b.dev/docs/template/defining-template) that does not use config files. `
+ - `--config <vdesk-toml>: specify path to the E2B config toml. By default E2B tries to find ./vdesk.toml in root directory. We recommend using the new build system (https://vdesk.dev/docs/template/defining-template) that does not use config files. `
  - `-d, --detach: create sandbox without connecting terminal to it `
 
 
-## e2b sandbox logs
+## vdesk sandbox logs
 
 
 show logs for sandbox
@@ -105,7 +105,7 @@ show logs for sandbox
 ### Usage
 
 ```bash
-e2b sandbox logs [options] <sandboxID>
+vdesk sandbox logs [options] <sandboxID>
 ```
 
 ### Options
@@ -117,7 +117,7 @@ e2b sandbox logs [options] <sandboxID>
  - `--loggers [loggers]: filter logs by loggers. Specify multiple loggers by separating them with a comma. `
 
 
-## e2b sandbox metrics
+## vdesk sandbox metrics
 
 
 show metrics for sandbox
@@ -125,7 +125,7 @@ show metrics for sandbox
 ### Usage
 
 ```bash
-e2b sandbox metrics [options] <sandboxID>
+vdesk sandbox metrics [options] <sandboxID>
 ```
 
 ### Options
@@ -135,7 +135,7 @@ e2b sandbox metrics [options] <sandboxID>
  - `--format <format>: specify format for printing metrics (json, pretty) [default: pretty]`
 
 
-## e2b sandbox exec
+## vdesk sandbox exec
 
 
 execute a command in a running sandbox
@@ -143,7 +143,7 @@ execute a command in a running sandbox
 ### Usage
 
 ```bash
-e2b sandbox exec [options] <sandboxID> <command...>
+vdesk sandbox exec [options] <sandboxID> <command...>
 ```
 
 ### Options

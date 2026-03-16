@@ -216,11 +216,11 @@ export default function Home() {
               <h1 className="whitespace-pre">Surf - Computer Agent by </h1>
             </Link>
             <Link
-              href="https://e2b.dev"
+              href="https://vdesk.dev"
               className="underline decoration-accent decoration-1 underline-offset-2 text-accent"
               target="_blank"
             >
-              E2B
+              VDESK
             </Link>
           </div>
 
@@ -262,14 +262,12 @@ export default function Home() {
                     }
                   >
                     <Timer
-                      className={`h-3 w-3 ${
-                        !isTabVisible ? "text-fg-400" : ""
-                      }`}
+                      className={`h-3 w-3 ${!isTabVisible ? "text-fg-400" : ""
+                        }`}
                     />
                     <span
-                      className={`text-xs font-medium ${
-                        !isTabVisible ? "text-fg-400" : ""
-                      }`}
+                      className={`text-xs font-medium ${!isTabVisible ? "text-fg-400" : ""
+                        }`}
                     >
                       {Math.floor(timeRemaining / 60)}:
                       {(timeRemaining % 60).toString().padStart(2, "0")}
@@ -312,14 +310,12 @@ export default function Home() {
                     className="px-1.5"
                   >
                     <Timer
-                      className={`h-3 w-3 ${
-                        !isTabVisible ? "text-fg-400" : ""
-                      }`}
+                      className={`h-3 w-3 ${!isTabVisible ? "text-fg-400" : ""
+                        }`}
                     />
                     <span
-                      className={`text-xs font-medium ml-1 ${
-                        !isTabVisible ? "text-fg-400" : ""
-                      }`}
+                      className={`text-xs font-medium ml-1 ${!isTabVisible ? "text-fg-400" : ""
+                        }`}
                     >
                       {Math.floor(timeRemaining / 60)}:
                       {(timeRemaining % 60).toString().padStart(2, "0")}
@@ -400,7 +396,7 @@ export default function Home() {
                   <span className="text-fg">select</span> an example prompt to
                   start a new{" "}
                   <a
-                    href="https://github.com/e2b-dev/desktop"
+                    href="https://github.com/vdesk-dev/desktop"
                     className="underline inline-flex items-center gap-1 decoration-accent decoration-1 underline-offset-2 text-accent"
                     target="_blank"
                   >

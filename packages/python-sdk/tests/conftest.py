@@ -7,7 +7,7 @@ from uuid import uuid4
 import pytest
 import pytest_asyncio
 
-from e2b import (
+from vdesk import (
     AsyncCommandHandle,
     AsyncSandbox,
     AsyncTemplate,
@@ -112,7 +112,7 @@ def build():
         skip_cache: bool = False,
         on_build_logs: Optional[Callable[[LogEntry], None]] = None,
     ):
-        build_name = name or f"e2b-test:v1-{uuid4()}"
+        build_name = name or f"vdesk-test:v1-{uuid4()}"
         build_info: Dict[str, Optional[str]] = {"template_id": None, "build_id": None}
 
         def capture_logs(log: LogEntry):
@@ -156,7 +156,7 @@ def async_build():
         skip_cache: bool = False,
         on_build_logs: Optional[Callable[[LogEntry], None]] = None,
     ):
-        build_name = name or f"e2b-test:v1-{uuid4()}"
+        build_name = name or f"vdesk-test:v1-{uuid4()}"
         build_info: Dict[str, Optional[str]] = {"template_id": None, "build_id": None}
 
         def capture_logs(log: LogEntry):
@@ -194,7 +194,7 @@ def async_build():
 
 @pytest.fixture
 def debug():
-    return os.getenv("E2B_DEBUG") is not None
+    return os.getenv("VDESK_DEBUG") is not None
 
 
 @pytest.fixture(autouse=True)
@@ -202,7 +202,7 @@ def skip_by_debug(request, debug):
     if request.node.get_closest_marker("skip_debug"):
         if debug:
             pytest.skip(
-                "skipped because E2B_DEBUG is set"  # ty: ignore[too-many-positional-arguments]
+                "skipped because VDESK_DEBUG is set"  # ty: ignore[too-many-positional-arguments]
             )  # ty: ignore[invalid-argument-type]
 
 

@@ -1,7 +1,7 @@
 import httpx
 import json
 
-from e2b.exceptions import (
+from vdesk.exceptions import (
     SandboxException,
     NotFoundException,
     AuthenticationException,

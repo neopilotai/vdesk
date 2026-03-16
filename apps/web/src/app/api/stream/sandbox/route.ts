@@ -23,11 +23,11 @@ export async function POST(request: Request) {
   }
 
   if (!apiKey) {
-    return NextResponse.json({ error: 'Missing E2B API Key' }, { status: 400 })
+    return NextResponse.json({ error: 'Missing VDESK API Key' }, { status: 400 })
   }
 
   if (!(await verifySandbox(apiKey, sandboxId))) {
-    return NextResponse.json({ error: 'Invalid E2B API Key' }, { status: 401 })
+    return NextResponse.json({ error: 'Invalid VDESK API Key' }, { status: 401 })
   }
 
   // Check if a stream already exists for the sandbox

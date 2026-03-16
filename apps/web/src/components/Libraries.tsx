@@ -6,14 +6,14 @@ import logoPython from '@/images/logos/python.svg'
 
 const libraries = [
   {
-    href: 'https://www.npmjs.com/package/e2b',
+    href: 'https://www.npmjs.com/package/vdesk',
     name: 'JavaScript & Typescript',
     description:
       'Usable both in Node.js and in the browser. Requires at least Node.js 18.0.',
     logo: logoNode,
   },
   {
-    href: 'https://pypi.org/project/e2b',
+    href: 'https://pypi.org/project/vdesk',
     name: 'Python',
     description: 'Requires at least Python 3.8.',
     logo: logoPython,

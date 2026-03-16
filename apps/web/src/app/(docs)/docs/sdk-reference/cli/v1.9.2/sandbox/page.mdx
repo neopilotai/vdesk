@@ -1,4 +1,4 @@
-## e2b sandbox
+## vdesk sandbox
 
 
 work with sandboxes
@@ -6,9 +6,9 @@ work with sandboxes
 ### Usage
 
 ```bash
-e2b sandbox [options] [command]
+vdesk sandbox [options] [command]
 ```
-## e2b sandbox connect
+## vdesk sandbox connect
 
 
 connect terminal to already running sandbox
@@ -16,11 +16,11 @@ connect terminal to already running sandbox
 ### Usage
 
 ```bash
-e2b sandbox connect [options] <sandboxID>
+vdesk sandbox connect [options] <sandboxID>
 ```
 
 
-## e2b sandbox list
+## vdesk sandbox list
 
 
 list all running sandboxes
@@ -28,11 +28,11 @@ list all running sandboxes
 ### Usage
 
 ```bash
-e2b sandbox list [options]
+vdesk sandbox list [options]
 ```
 
 
-## e2b sandbox kill
+## vdesk sandbox kill
 
 
 kill sandbox
@@ -40,7 +40,7 @@ kill sandbox
 ### Usage
 
 ```bash
-e2b sandbox kill [options] [sandboxID]
+vdesk sandbox kill [options] [sandboxID]
 ```
 
 ### Options
@@ -49,7 +49,7 @@ e2b sandbox kill [options] [sandboxID]
  - `-a, --all: kill all running sandboxes `
 
 
-## e2b sandbox spawn
+## vdesk sandbox spawn
 
 
 spawn sandbox and connect terminal to it
@@ -57,17 +57,17 @@ spawn sandbox and connect terminal to it
 ### Usage
 
 ```bash
-e2b sandbox spawn [options] [template]
+vdesk sandbox spawn [options] [template]
 ```
 
 ### Options
 
 
  - `-p, --path <path>: change root directory where command is executed to <path> directory `
- - `--config <e2b-toml>: specify path to the E2B config toml. By default E2B tries to find ./e2b.toml in root directory. `
+ - `--config <vdesk-toml>: specify path to the E2B config toml. By default E2B tries to find ./vdesk.toml in root directory. `
 
 
-## e2b sandbox logs
+## vdesk sandbox logs
 
 
 show logs for sandbox
@@ -75,7 +75,7 @@ show logs for sandbox
 ### Usage
 
 ```bash
-e2b sandbox logs [options] <sandboxID>
+vdesk sandbox logs [options] <sandboxID>
 ```
 
 ### Options
@@ -87,7 +87,7 @@ e2b sandbox logs [options] <sandboxID>
  - `--loggers [loggers]: filter logs by loggers. Specify multiple loggers by separating them with a comma. `
 
 
-## e2b sandbox metrics
+## vdesk sandbox metrics
 
 
 show metrics for sandbox
@@ -95,7 +95,7 @@ show metrics for sandbox
 ### Usage
 
 ```bash
-e2b sandbox metrics [options] <sandboxID>
+vdesk sandbox metrics [options] <sandboxID>
 ```
 
 ### Options

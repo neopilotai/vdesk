@@ -2,7 +2,7 @@ import uuid
 
 import pytest
 
-from e2b import Sandbox, SandboxQuery, SandboxState
+from vdesk import Sandbox, SandboxQuery, SandboxState
 
 
 @pytest.mark.skip_debug()

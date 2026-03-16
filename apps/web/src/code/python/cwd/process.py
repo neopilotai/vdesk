@@ -1,4 +1,4 @@
-from e2b import Sandbox
+from vdesk import Sandbox
 
 sandbox = Sandbox(template="base", cwd="/code")  # $HighlightLine
 sandbox_cwd = sandbox.process.start("pwd")  # $HighlightLine

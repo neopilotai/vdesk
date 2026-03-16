@@ -6,7 +6,7 @@ from typing import List, Literal, Optional, TypedDict, Union
 
 from typing_extensions import NotRequired
 
-from e2b.template.logger import LogEntry
+from vdesk.template.logger import LogEntry
 
 
 class TemplateBuildStatus(str, Enum):
@@ -166,7 +166,7 @@ RegistryConfig = Union[GenericDockerRegistry, AWSRegistry, GCPRegistry]
 
 class TemplateType(TypedDict):
     """
-    Internal representation of a template for the E2B build API.
+    Internal representation of a template for the VDESK build API.
     """
 
     fromImage: NotRequired[str]

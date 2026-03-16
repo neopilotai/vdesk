@@ -1,4 +1,4 @@
-from e2b import AsyncSandbox
+from vdesk import AsyncSandbox
 
 
 async def test_remove_file(async_sandbox: AsyncSandbox):

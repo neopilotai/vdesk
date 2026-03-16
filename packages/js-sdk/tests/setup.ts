@@ -30,7 +30,7 @@ async function buildTemplate(
   options?: { name?: string; skipCache?: boolean },
   onBuildLogs?: (logEntry: LogEntry) => void
 ): Promise<BuildInfo> {
-  const buildName = options?.name || `e2b-test:v1-${randomUUID()}`
+  const buildName = options?.name || `vdesk-test:v1-${randomUUID()}`
   const buildInfo: { templateId?: string; buildId?: string } = {}
 
   const captureLogs = (log: LogEntry) => {
@@ -56,8 +56,8 @@ async function buildTemplate(
   } catch (e) {
     console.error(
       `\n[BUILD FAILED] name=${buildName}, ` +
-        `template_id=${buildInfo.templateId}, ` +
-        `build_id=${buildInfo.buildId}, error=${e}`
+      `template_id=${buildInfo.templateId}, ` +
+      `build_id=${buildInfo.buildId}, error=${e}`
     )
     throw e
   }
@@ -67,7 +67,7 @@ export const sandboxTest = base.extend<SandboxFixture>({
   template,
   sandboxTestId: [
     // eslint-disable-next-line no-empty-pattern
-    async ({}, use) => {
+    async ({ }, use) => {
       const id = `test-${generateRandomString()}`
       await use(id)
     },
@@ -104,15 +104,15 @@ export const sandboxTest = base.extend<SandboxFixture>({
 export const buildTemplateTest = base.extend<BuildTemplateFixture>({
   buildTemplate: [
     // eslint-disable-next-line no-empty-pattern
-    async ({}, use) => {
+    async ({ }, use) => {
       await use(buildTemplate)
     },
     { auto: true },
   ],
 })
 
-export const isDebug = process.env.E2B_DEBUG !== undefined
-export const isIntegrationTest = process.env.E2B_INTEGRATION_TEST !== undefined
+export const isDebug = process.env.VDESK_DEBUG !== undefined
+export const isIntegrationTest = process.env.VDESK_INTEGRATION_TEST !== undefined
 
 function generateRandomString(length: number = 8): string {
   return Math.random()
@@ -125,11 +125,11 @@ export async function wait(ms: number) {
 }
 
 /**
- * Returns the API URL for the given path, using E2B_DOMAIN env var.
+ * Returns the API URL for the given path, using VDESK_DOMAIN env var.
  * Supports msw path parameters like :templateID
  */
 export function apiUrl(path: string): string {
-  const domain = process.env.E2B_DOMAIN || 'e2b.app'
+  const domain = process.env.VDESK_DOMAIN || 'vdesk.app'
   return `https://api.${domain}${path}`
 }
 

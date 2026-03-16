@@ -1,4 +1,4 @@
-import { Sandbox } from 'e2b'
+import { Sandbox } from 'vdesk'
 
 const sandbox = await Sandbox.create({
   template: 'base',
@@ -10,7 +10,7 @@ await sandbox.keepAlive(60_000)
 
 // Later, can be even from another process
 // List all running sandboxes
-const paginator = Sandbox.list({ query: {state: ['running']}})
+const paginator = Sandbox.list({ query: { state: ['running'] } })
 const runningSandboxes = await paginator.nextItems()
 // Find the sandbox by metadata
 const found = runningSandboxes.find(s => s.metadata?.userID === 'uniqueID')

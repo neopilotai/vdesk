@@ -1,13 +1,13 @@
 from typing import List
 
-from e2b import SandboxException
-from e2b.envd.filesystem import filesystem_connect
-from e2b.envd.filesystem.filesystem_pb2 import (
+from vdesk import SandboxException
+from vdesk.envd.filesystem import filesystem_connect
+from vdesk.envd.filesystem.filesystem_pb2 import (
     GetWatcherEventsRequest,
     RemoveWatcherRequest,
 )
-from e2b.envd.rpc import handle_rpc_exception
-from e2b.sandbox.filesystem.watch_handle import FilesystemEvent, map_event_type
+from vdesk.envd.rpc import handle_rpc_exception
+from vdesk.sandbox.filesystem.watch_handle import FilesystemEvent, map_event_type
 
 
 class WatchHandle:

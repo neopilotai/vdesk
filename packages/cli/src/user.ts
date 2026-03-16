@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 
 /**
- * User configuration stored in ~/.e2b/config.json
+ * User configuration stored in ~/.vdesk/config.json
  */
 export interface UserConfig {
   email: string
@@ -14,15 +14,15 @@ export interface UserConfig {
   dockerProxySet?: boolean
 }
 
-export const USER_CONFIG_PATH = path.join(os.homedir(), '.e2b', 'config.json') // TODO: Keep in Keychain
+export const USER_CONFIG_PATH = path.join(os.homedir(), '.vdesk', 'config.json') // TODO: Keep in Keychain
 
 export const DOCS_BASE =
-  process.env.E2B_DOCS_BASE ||
-  `https://${process.env.E2B_DOMAIN || 'e2b.dev'}/docs`
+  process.env.VDESK_DOCS_BASE ||
+  `https://${process.env.VDESK_DOMAIN || 'vdesk.dev'}/docs`
 
 export const DASHBOARD_BASE =
-  process.env.E2B_DASHBOARD_BASE ||
-  `https://${process.env.E2B_DOMAIN || 'e2b.dev'}/dashboard`
+  process.env.VDESK_DASHBOARD_BASE ||
+  `https://${process.env.VDESK_DOMAIN || 'vdesk.dev'}/dashboard`
 
 export const SANDBOX_INSPECT_URL = (sandboxId: string) =>
   `${DASHBOARD_BASE}/inspect/sandbox/${sandboxId}`

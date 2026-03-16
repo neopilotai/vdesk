@@ -15,13 +15,13 @@ import {
   selectMultipleOption,
   teamOption,
 } from 'src/options'
-import { configName, E2BConfig, getConfigPath, loadConfig } from 'src/config'
+import { configName, VDESKConfig, getConfigPath, loadConfig } from 'src/config'
 import { getRoot } from 'src/utils/filesystem'
 import { listSandboxTemplates } from './list'
 import { getPromptTemplates } from 'src/utils/templatePrompt'
 import { confirm } from 'src/utils/confirm'
 import { client, resolveTeamId } from 'src/api'
-import { handleE2BRequestError } from '../../utils/errors'
+import { handleVDESKRequestError } from '../../utils/errors'
 
 async function publishTemplate(templateID: string, publish: boolean) {
   const res = await client.api.PATCH('/v2/templates/{templateID}', {
@@ -35,7 +35,7 @@ async function publishTemplate(templateID: string, publish: boolean) {
     },
   })
 
-  handleE2BRequestError(
+  handleVDESKRequestError(
     res,
     `Error ${publish ? 'publishing' : 'unpublishing'} sandbox template`
   )
@@ -59,7 +59,7 @@ async function templateAction(
 
     const root = getRoot(opts.path)
 
-    const templates: (Pick<E2BConfig, 'template_id'> & {
+    const templates: (Pick<VDESKConfig, 'template_id'> & {
       configPath?: string
     })[] = []
 
@@ -80,8 +80,7 @@ async function templateAction(
 
       if (filteredTemplates.length === 0) {
         console.log(
-          `No sandbox templates available ${
-            publish ? 'to publish' : 'to unpublish'
+          `No sandbox templates available ${publish ? 'to publish' : 'to unpublish'
           } found`
         )
         return
@@ -151,14 +150,11 @@ async function templateAction(
 
     if (!opts.yes) {
       const confirmed = await confirm(
-        `Do you really want to ${publish ? 'publish' : 'unpublish'} ${
-          templates.length === 1 ? 'this template' : 'these templates'
-        }?\n⚠️ This will make the ${
-          templates.length === 1 ? 'template' : 'templates'
-        } ${
-          publish
-            ? 'public to everyone outside your team'
-            : 'private to your team'
+        `Do you really want to ${publish ? 'publish' : 'unpublish'} ${templates.length === 1 ? 'this template' : 'these templates'
+        }?\n⚠️ This will make the ${templates.length === 1 ? 'template' : 'templates'
+        } ${publish
+          ? 'public to everyone outside your team'
+          : 'private to your team'
         }`
       )
 
@@ -171,8 +167,7 @@ async function templateAction(
     await Promise.all(
       templates.map(async (e) => {
         console.log(
-          `- ${
-            publish ? 'Publishing' : 'Unpublishing'
+          `- ${publish ? 'Publishing' : 'Unpublishing'
           } sandbox template ${asFormattedSandboxTemplate(
             { ...e, templateID: e.template_id },
             e.configPath
@@ -200,7 +195,7 @@ export const publishCommand = new commander.Command('publish')
     )} to publish it. If you dont specify ${asBold(
       '[template]'
     )} the command will try to publish sandbox template defined by ${asLocal(
-      'e2b.toml'
+      'vdesk.toml'
     )}.`
   )
   .addOption(pathOption)
@@ -220,7 +215,7 @@ export const unPublishCommand = new commander.Command('unpublish')
     )} to unpublish it. If you don't specify ${asBold(
       '[template]'
     )} the command will try to unpublish sandbox template defined by ${asLocal(
-      'e2b.toml'
+      'vdesk.toml'
     )}.`
   )
   .addOption(pathOption)

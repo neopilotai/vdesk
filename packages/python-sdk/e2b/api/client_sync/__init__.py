@@ -3,8 +3,8 @@ from typing import Optional
 import httpx
 import logging
 
-from e2b.api import ApiClient, limits
-from e2b.connection_config import ConnectionConfig
+from vdesk.api import ApiClient, limits
+from vdesk.connection_config import ConnectionConfig
 
 logger = logging.getLogger(__name__)
 

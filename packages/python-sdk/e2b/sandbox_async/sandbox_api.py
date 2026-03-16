@@ -4,8 +4,8 @@ from typing import Any, Dict, List, Optional, cast
 from packaging.version import Version
 from typing_extensions import Unpack
 
-from e2b.api import SandboxCreateResponse, handle_api_exception
-from e2b.api.client.api.sandboxes import (
+from vdesk.api import SandboxCreateResponse, handle_api_exception
+from vdesk.api.client.api.sandboxes import (
     delete_sandboxes_sandbox_id,
     get_sandboxes_sandbox_id,
     get_sandboxes_sandbox_id_metrics,
@@ -15,8 +15,8 @@ from e2b.api.client.api.sandboxes import (
     post_sandboxes_sandbox_id_snapshots,
     post_sandboxes_sandbox_id_timeout,
 )
-from e2b.api.client.api.templates import delete_templates_template_id
-from e2b.api.client.models import (
+from vdesk.api.client.api.templates import delete_templates_template_id
+from vdesk.api.client.models import (
     ConnectSandbox,
     Error,
     NewSandbox,
@@ -26,16 +26,16 @@ from e2b.api.client.models import (
     SandboxAutoResumeConfig,
     SandboxNetworkConfig,
 )
-from e2b.api.client.types import UNSET
-from e2b.api.client_async import get_api_client
-from e2b.connection_config import ApiParams, ConnectionConfig
-from e2b.exceptions import (
+from vdesk.api.client.types import UNSET
+from vdesk.api.client_async import get_api_client
+from vdesk.connection_config import ApiParams, ConnectionConfig
+from vdesk.exceptions import (
     NotFoundException,
     SandboxException,
     TemplateException,
 )
-from e2b.sandbox.main import SandboxBase
-from e2b.sandbox.sandbox_api import (
+from vdesk.sandbox.main import SandboxBase
+from vdesk.sandbox.sandbox_api import (
     SandboxLifecycle,
     get_auto_resume_enabled,
     McpServer,
@@ -45,7 +45,7 @@ from e2b.sandbox.sandbox_api import (
     SandboxQuery,
     SnapshotInfo,
 )
-from e2b.sandbox_async.paginator import AsyncSandboxPaginator
+from vdesk.sandbox_async.paginator import AsyncSandboxPaginator
 
 
 class SandboxApi(SandboxBase):
@@ -212,7 +212,7 @@ class SandboxApi(SandboxBase):
             await SandboxApi._cls_kill(res.parsed.sandbox_id)
             raise TemplateException(
                 "You need to update the template to use the new SDK. "
-                "You can do this by running `e2b template build` in the directory with the template."
+                "You can do this by running `vdesk template build` in the directory with the template."
             )
 
         domain = res.parsed.domain if isinstance(res.parsed.domain, str) else None

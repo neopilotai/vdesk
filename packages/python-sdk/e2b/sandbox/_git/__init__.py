@@ -1,4 +1,4 @@
-from e2b.sandbox._git.args import (
+from vdesk.sandbox._git.args import (
     build_add_args,
     build_branches_args,
     build_checkout_branch_args,
@@ -21,7 +21,7 @@ from e2b.sandbox._git.args import (
     build_status_args,
     shell_escape,
 )
-from e2b.sandbox._git.auth import (
+from vdesk.sandbox._git.auth import (
     build_auth_error_message,
     build_upstream_error_message,
     is_auth_failure,
@@ -29,14 +29,14 @@ from e2b.sandbox._git.auth import (
     strip_credentials,
     with_credentials,
 )
-from e2b.sandbox._git.config import resolve_config_scope
-from e2b.sandbox._git.parse import (
+from vdesk.sandbox._git.config import resolve_config_scope
+from vdesk.sandbox._git.parse import (
     derive_repo_dir_from_url,
     parse_git_branches,
     parse_git_status,
     parse_remote_url,
 )
-from e2b.sandbox._git.types import ClonePlan, GitBranches, GitFileStatus, GitStatus
+from vdesk.sandbox._git.types import ClonePlan, GitBranches, GitFileStatus, GitStatus
 
 __all__ = [
     "build_add_args",

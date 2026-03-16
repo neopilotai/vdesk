@@ -1,20 +1,20 @@
 from typing import Dict, Optional
 
-import e2b_connect
+import vdesk_connect
 import httpcore
 
 from packaging.version import Version
-from e2b.envd.process import process_connect, process_pb2
-from e2b.connection_config import (
+from vdesk.envd.process import process_connect, process_pb2
+from vdesk.connection_config import (
     Username,
     ConnectionConfig,
     KEEPALIVE_PING_HEADER,
     KEEPALIVE_PING_INTERVAL_SEC,
 )
-from e2b.exceptions import SandboxException
-from e2b.envd.rpc import authentication_header, handle_rpc_exception
-from e2b.sandbox.commands.command_handle import PtySize
-from e2b.sandbox_async.commands.command_handle import (
+from vdesk.exceptions import SandboxException
+from vdesk.envd.rpc import authentication_header, handle_rpc_exception
+from vdesk.sandbox.commands.command_handle import PtySize
+from vdesk.sandbox_async.commands.command_handle import (
     AsyncCommandHandle,
     OutputHandler,
     PtyOutput,
@@ -38,7 +38,7 @@ class Pty:
         self._rpc = process_connect.ProcessClient(
             envd_api_url,
             # TODO: Fix and enable compression again — the headers compression is not solved for streaming.
-            # compressor=e2b_connect.GzipCompressor,
+            # compressor=vdesk_connect.GzipCompressor,
             async_pool=pool,
             json=True,
             headers=connection_config.sandbox_headers,
@@ -69,8 +69,8 @@ class Pty:
             )
             return True
         except Exception as e:
-            if isinstance(e, e2b_connect.ConnectException):
-                if e.status == e2b_connect.Code.not_found:
+            if isinstance(e, vdesk_connect.ConnectException):
+                if e.status == vdesk_connect.Code.not_found:
                     return False
             raise handle_rpc_exception(e)
 

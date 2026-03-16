@@ -1,4 +1,4 @@
-import { Template, defaultBuildLogger } from 'e2b'
+import { Template, defaultBuildLogger } from 'vdesk'
 import { template } from './template'
 
 async function main() {

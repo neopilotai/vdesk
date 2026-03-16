@@ -10,8 +10,8 @@ import inspect
 from types import TracebackType, FrameType
 from typing import List, Optional, Union
 
-from e2b.exceptions import TemplateException
-from e2b.template.consts import BASE_STEP_NAME, FINALIZE_STEP_NAME
+from vdesk.exceptions import TemplateException
+from vdesk.template.consts import BASE_STEP_NAME, FINALIZE_STEP_NAME
 
 
 def make_traceback(caller_frame: Optional[FrameType]) -> Optional[TracebackType]:

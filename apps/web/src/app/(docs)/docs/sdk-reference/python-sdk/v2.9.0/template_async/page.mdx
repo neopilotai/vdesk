@@ -40,7 +40,7 @@ Build and deploy a template to E2B infrastructure.
 - `domain`: Domain of the E2B API
 Example
 ```python
-from e2b import AsyncTemplate
+from vdesk import AsyncTemplate
 
 template = (
     AsyncTemplate()
@@ -90,7 +90,7 @@ Build and deploy a template to E2B infrastructure without waiting for completion
 BuildInfo containing the template ID and build ID
 Example
 ```python
-from e2b import AsyncTemplate
+from vdesk import AsyncTemplate
 
 template = (
     AsyncTemplate()
@@ -132,7 +132,7 @@ Get the status of a build.
 TemplateBuild containing the build status and logs
 Example
 ```python
-from e2b import AsyncTemplate
+from vdesk import AsyncTemplate
 
 build_info = await AsyncTemplate.build_in_background(template, alias='my-template')
 status = await AsyncTemplate.get_build_status(build_info, logs_offset=0)

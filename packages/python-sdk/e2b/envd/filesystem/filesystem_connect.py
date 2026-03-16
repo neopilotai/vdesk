@@ -2,9 +2,9 @@
 from typing import Any, Generator, Coroutine, AsyncGenerator, Optional
 from httpcore import ConnectionPool, AsyncConnectionPool
 
-import e2b_connect as connect
+import vdesk_connect as connect
 
-from e2b.envd.filesystem import filesystem_pb2 as filesystem_dot_filesystem__pb2
+from vdesk.envd.filesystem import filesystem_pb2 as filesystem_dot_filesystem__pb2
 
 FilesystemName = "filesystem.Filesystem"
 

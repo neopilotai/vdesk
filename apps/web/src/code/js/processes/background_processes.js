@@ -1,8 +1,8 @@
-import { Sandbox } from 'e2b'
+import { Sandbox } from 'vdesk'
 
 const sandbox = await Sandbox.create({
   template: 'base',
-  apiKey: process.env.E2B_API_KEY,
+  apiKey: process.env.VDESK_API_KEY,
 })
 
 function sleep(ms) {

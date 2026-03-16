@@ -1,11 +1,11 @@
-import { Sandbox } from 'e2b'
+import { Sandbox } from 'vdesk'
 
 const sandbox = await Sandbox.create({
   template: 'base',
   onExit: () => console.log('[sandbox]', 'process ended'), // $HighlightLine
 })
 
-const proc = await sandbox.process.start({cmd: 'echo "Hello World!"'})
+const proc = await sandbox.process.start({ cmd: 'echo "Hello World!"' })
 await proc.wait()
 // output: [sandbox] process ended
 

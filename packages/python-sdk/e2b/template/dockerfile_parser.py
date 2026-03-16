@@ -134,7 +134,7 @@ def parse_dockerfile(
                 print(f"Unsupported instruction: {instruction}")
                 continue
 
-    # Set the user and workdir to the E2B defaults
+    # Set the user and workdir to the VDESK defaults
     if not user_changed:
         template_builder.set_user("user")
     if not workdir_changed:

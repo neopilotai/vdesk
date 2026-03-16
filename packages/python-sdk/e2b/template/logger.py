@@ -9,7 +9,7 @@ from rich.console import Console
 from rich.style import Style
 from rich.text import Text
 
-from e2b.template.utils import strip_ansi_escape_codes
+from vdesk.template.utils import strip_ansi_escape_codes
 
 """Log entry severity levels."""
 LogEntryLevel = Literal["debug", "info", "warn", "error"]
@@ -216,7 +216,7 @@ def default_build_logger(
 
     Example
     ```python
-    from e2b import Template, default_build_logger
+    from vdesk import Template, default_build_logger
 
     template = Template().from_python_image()
 

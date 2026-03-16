@@ -1,24 +1,24 @@
 """
 Secure sandboxed cloud environments made for AI agents and AI apps.
 
-Check docs [here](https://e2b.dev/docs).
+Check docs [here](https://vdesk.dev/docs).
 
-E2B Sandbox is a secure cloud sandbox environment made for AI agents and AI
+VDESK Sandbox is a secure cloud sandbox environment made for AI agents and AI
 apps.
 Sandboxes allow AI agents and apps to have long running cloud secure environments.
 In these environments, large language models can use the same tools as humans do.
 
-E2B Python SDK supports both sync and async API:
+VDESK Python SDK supports both sync and async API:
 
 ```py
-from e2b import Sandbox
+from vdesk import Sandbox
 
 # Create sandbox
 sandbox = Sandbox.create()
 ```
 
 ```py
-from e2b import AsyncSandbox
+from vdesk import AsyncSandbox
 
 # Create sandbox
 sandbox = await AsyncSandbox.create()

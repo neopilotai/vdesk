@@ -12,39 +12,39 @@ export const KEEPALIVE_PING_HEADER = 'Keepalive-Ping-Interval'
  */
 export interface ConnectionOpts {
   /**
-   * E2B API key to use for authentication.
+   * VDESK API key to use for authentication.
    *
-   * @default E2B_API_KEY // environment variable
+   * @default VDESK_API_KEY // environment variable
    */
   apiKey?: string
   /**
-   * E2B access token to use for authentication.
+   * VDESK access token to use for authentication.
    *
-   * @default E2B_ACCESS_TOKEN // environment variable
+   * @default VDESK_ACCESS_TOKEN // environment variable
    */
   accessToken?: string
   /**
    * Domain to use for the API.
    *
-   * @default E2B_DOMAIN // environment variable or `e2b.app`
+   * @default VDESK_DOMAIN // environment variable or `vdesk.app`
    */
   domain?: string
   /**
    * API Url to use for the API.
    * @internal
-   * @default E2B_API_URL // environment variable or `https://api.${domain}`
+   * @default VDESK_API_URL // environment variable or `https://api.${domain}`
    */
   apiUrl?: string
   /**
    * Sandbox Url to use for the API.
    * @internal
-   * @default E2B_SANDBOX_URL // environment variable or `https://${port}-${sandboxID}.${domain}`
+   * @default VDESK_SANDBOX_URL // environment variable or `https://${port}-${sandboxID}.${domain}`
    */
   sandboxUrl?: string
   /**
    * If true the SDK starts in the debug mode and connects to the local envd API server.
    * @internal
-   * @default E2B_DEBUG // environment variable or `false`
+   * @default VDESK_DEBUG // environment variable or `false`
    */
   debug?: boolean
   /**
@@ -91,7 +91,7 @@ export class ConnectionConfig {
     this.requestTimeoutMs = opts?.requestTimeoutMs ?? REQUEST_TIMEOUT_MS
     this.logger = opts?.logger
     this.headers = opts?.headers || {}
-    this.headers['User-Agent'] = `e2b-js-sdk/${version}`
+    this.headers['User-Agent'] = `vdesk-js-sdk/${version}`
 
     this.apiUrl =
       opts?.apiUrl ||
@@ -102,27 +102,27 @@ export class ConnectionConfig {
   }
 
   private static get domain() {
-    return getEnvVar('E2B_DOMAIN') || 'e2b.app'
+    return getEnvVar('VDESK_DOMAIN') || 'vdesk.app'
   }
 
   private static get apiUrl() {
-    return getEnvVar('E2B_API_URL')
+    return getEnvVar('VDESK_API_URL')
   }
 
   private static get sandboxUrl() {
-    return getEnvVar('E2B_SANDBOX_URL')
+    return getEnvVar('VDESK_SANDBOX_URL')
   }
 
   private static get debug() {
-    return (getEnvVar('E2B_DEBUG') || 'false').toLowerCase() === 'true'
+    return (getEnvVar('VDESK_DEBUG') || 'false').toLowerCase() === 'true'
   }
 
   private static get apiKey() {
-    return getEnvVar('E2B_API_KEY')
+    return getEnvVar('VDESK_API_KEY')
   }
 
   private static get accessToken() {
-    return getEnvVar('E2B_ACCESS_TOKEN')
+    return getEnvVar('VDESK_ACCESS_TOKEN')
   }
 
   getSignal(requestTimeoutMs?: number) {
