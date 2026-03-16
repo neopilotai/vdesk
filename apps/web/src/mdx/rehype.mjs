@@ -69,7 +69,7 @@ function customRenderToHtml(lines, language) {
       'code',
       {},
       lines.map((line, index) => {
-        let isE2bImport = false
+        let isVdeskImport = false
         if (
           // Not perfect, but should work fine for now
           index === 0 && // Only supported on the first line
@@ -84,7 +84,7 @@ function customRenderToHtml(lines, language) {
               token.color === 'var(--shiki-token-text)'
           ) // works fine for Python and JS
         ) {
-          isE2bImport = true // TODO: Actually use, probably to dim the line
+          isVdeskImport = true // TODO: Actually use, probably to dim the line
         }
 
         let isHighlightComment = false

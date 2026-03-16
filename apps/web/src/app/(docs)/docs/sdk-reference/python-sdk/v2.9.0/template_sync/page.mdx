@@ -9,7 +9,7 @@
 class Template(TemplateBase)
 ```
 
-Synchronous template builder for E2B sandboxes.
+Synchronous template builder for VDESK sandboxes.
 
 
 ### build
@@ -26,7 +26,7 @@ def build(template: TemplateClass,
           domain: Optional[str] = None) -> BuildInfo
 ```
 
-Build and deploy a template to E2B infrastructure.
+Build and deploy a template to VDESK infrastructure.
 
 **Arguments**:
 
@@ -36,8 +36,8 @@ Build and deploy a template to E2B infrastructure.
 - `memory_mb`: Amount of memory in MB allocated to the sandbox
 - `skip_cache`: If True, forces a complete rebuild ignoring cache
 - `on_build_logs`: Callback function to receive build logs during the build process
-- `api_key`: E2B API key for authentication
-- `domain`: Domain of the E2B API
+- `api_key`: VDESK API key for authentication
+- `domain`: Domain of the VDESK API
 Example
 ```python
 from vdesk import Template
@@ -73,7 +73,7 @@ def build_in_background(template: TemplateClass,
                         domain: Optional[str] = None) -> BuildInfo
 ```
 
-Build and deploy a template to E2B infrastructure without waiting for completion.
+Build and deploy a template to VDESK infrastructure without waiting for completion.
 
 **Arguments**:
 
@@ -82,8 +82,8 @@ Build and deploy a template to E2B infrastructure without waiting for completion
 - `cpu_count`: Number of CPUs allocated to the sandbox
 - `memory_mb`: Amount of memory in MB allocated to the sandbox
 - `skip_cache`: If True, forces a complete rebuild ignoring cache
-- `api_key`: E2B API key for authentication
-- `domain`: Domain of the E2B API
+- `api_key`: VDESK API key for authentication
+- `domain`: Domain of the VDESK API
 
 **Returns**:
 
@@ -124,8 +124,8 @@ Get the status of a build.
 
 - `build_info`: Build identifiers returned from build_in_background
 - `logs_offset`: Offset for fetching logs
-- `api_key`: E2B API key for authentication
-- `domain`: Domain of the E2B API
+- `api_key`: VDESK API key for authentication
+- `domain`: Domain of the VDESK API
 
 **Returns**:
 

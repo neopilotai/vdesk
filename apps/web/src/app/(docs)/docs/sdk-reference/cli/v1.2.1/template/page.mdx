@@ -23,11 +23,11 @@ vdesk template build [options] [template]
 
 
  - `-p, --path <path>: change root directory where command is executed to <path> directory `
- - `-d, --dockerfile <file>: specify path to Dockerfile. By default E2B tries to find vdesk.Dockerfile or Dockerfile in root directory. `
+ - `-d, --dockerfile <file>: specify path to Dockerfile. By default VDESKSK tries to find vdesk.Dockerfile or Dockerfile in root directory. `
  - `-n, --name <template-name>: specify sandbox template name. You can use the template name to start the sandbox with SDK. The template name must be lowercase and contain only letters, numbers, dashes and underscores. `
  - `-c, --cmd <start-command>: specify command that will be executed when the sandbox is started. `
- - `-t, --team <team-id>: specify the team ID that the operation will be associated with. You can find team ID in the team settings in the E2B dashboard (https://vdesk.dev/dashboard?tab=team). `
- - `--config <vdesk-toml>: specify path to the E2B config toml. By default E2B tries to find ./vdesk.toml in root directory. `
+ - `-t, --team <team-id>: specify the team ID that the operation will be associated with. You can find team ID in the team settings in the VDESKSK dashboard (https://vdesk.dev/dashboard?tab=team). `
+ - `--config <vdesk-toml>: specify path to the VDESKSK config toml. By defaulVDESKDESK tries to find ./vdesk.toml in root directory. `
  - `--cpu-count <cpu-count>: specify the number of CPUs that will be used to run the sandbox. The default value is 2. `
  - `--memory-mb <memory-mb>: specify the amount of memory in megabytes that will be used to run the sandbox. Must be an even number. The default value is 512. `
  - `--build-arg <args...>: specify additional build arguments for the build command. The format should be <varname>=<value>. `
@@ -47,13 +47,13 @@ vdesk template list [options]
 ### Options
 
 
- - `-t, --team <team-id>: specify the team ID that the operation will be associated with. You can find team ID in the team settings in the E2B dashboard (https://vdesk.dev/dashboard?tab=team). `
+ - `-t, --team <team-id>: specify the team ID that the operation will be associated with. You can find team ID in the team settings in the VDESKSK dashboard (https://vdesk.dev/dashboard?tab=team). `
 
 
 ## vdesk template init
 
 
-create basic E2B Dockerfile (./vdesk.Dockerfile) in root directory. You can then run vdesk template build to build sandbox template from this Dockerfile
+create basic VDESKSK Dockerfile (./vdesk.Dockerfile) in root directory. You can then run vdesk template build to build sandbox template from this Dockerfile
 
 ### Usage
 
@@ -82,9 +82,9 @@ vdesk template delete [options] [template]
 
 
  - `-p, --path <path>: change root directory where command is executed to <path> directory `
- - `--config <vdesk-toml>: specify path to the E2B config toml. By default E2B tries to find ./vdesk.toml in root directory. `
+ - `--config <vdesk-toml>: specify path to the VDESKSK config toml. By defaulVDESKDESK tries to find ./vdesk.toml in root directory. `
  - `-s, --select: select sandbox template from interactive list `
- - `-t, --team <team-id>: specify the team ID that the operation will be associated with. You can find team ID in the team settings in the E2B dashboard (https://vdesk.dev/dashboard?tab=team). `
+ - `-t, --team <team-id>: specify the team ID that the operation will be associated with. You can find team ID in the team settings in the VDESKSK dashboard (https://vdesk.dev/dashboard?tab=team). `
  - `-y, --yes: skip manual delete confirmation `
 
 
@@ -103,9 +103,9 @@ vdesk template publish [options] [template]
 
 
  - `-p, --path <path>: change root directory where command is executed to <path> directory `
- - `--config <vdesk-toml>: specify path to the E2B config toml. By default E2B tries to find ./vdesk.toml in root directory. `
+ - `--config <vdesk-toml>: specify path to the VDESKSK config toml. By defaulVDESKDESK tries to find ./vdesk.toml in root directory. `
  - `-s, --select: select sandbox template from interactive list `
- - `-t, --team <team-id>: specify the team ID that the operation will be associated with. You can find team ID in the team settings in the E2B dashboard (https://vdesk.dev/dashboard?tab=team). `
+ - `-t, --team <team-id>: specify the team ID that the operation will be associated with. You can find team ID in the team settings in the VDESKSK dashboard (https://vdesk.dev/dashboard?tab=team). `
  - `-y, --yes: skip manual publish confirmation `
 
 
@@ -124,9 +124,9 @@ vdesk template unpublish [options] [template]
 
 
  - `-p, --path <path>: change root directory where command is executed to <path> directory `
- - `--config <vdesk-toml>: specify path to the E2B config toml. By default E2B tries to find ./vdesk.toml in root directory. `
+ - `--config <vdesk-toml>: specify path to the VDESKSK config toml. By defaulVDESKDESK tries to find ./vdesk.toml in root directory. `
  - `-s, --select: select sandbox template from interactive list `
- - `-t, --team <team-id>: specify the team ID that the operation will be associated with. You can find team ID in the team settings in the E2B dashboard (https://vdesk.dev/dashboard?tab=team). `
+ - `-t, --team <team-id>: specify the team ID that the operation will be associated with. You can find team ID in the team settings in the VDESKSK dashboard (https://vdesk.dev/dashboard?tab=team). `
  - `-y, --yes: skip manual unpublish confirmation `
 
 

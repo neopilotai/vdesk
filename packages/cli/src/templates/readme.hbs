@@ -1,19 +1,19 @@
-# {{alias}} - E2B Sandbox Template
+# {{alias}} - VDESK Sandbox Template
 
-This is an E2B sandbox template that allows you to run code in a controlled environment.
+This is an VDESK sandbox template that allows you to run code in a controlled environment.
 
 ## Prerequisites
 
 Before you begin, make sure you have:
-- An E2B account (sign up at [vdesk.dev](https://vdesk.dev))
-- Your E2B API key (get it from your [E2B dashboard](https://vdesk.dev/dashboard))
+- An VDESK account (sign up at [vdesk.dev](https://vdesk.dev))
+- Your VDESK API key (get it from your [VDESK dashboard](https://vdesk.dev/dashboard))
 {{#if isTypeScript}}- Node.js and npm/yarn (or similar) installed{{else if isPython}}- Python installed{{/if}}
 
 ## Configuration
 
 1. Create a `.env` file in your project root or set the environment variable:
    ```
-   E2B_API_KEY=your_api_key_here
+   VDESK_API_KEY=your_api_key_here
    ```
 
 ## Installing Dependencies
@@ -46,7 +46,7 @@ make vdesk:build:prod
 
 ## Using the Template in a Sandbox
 
-Once your template is built, you can use it in your E2B sandbox:
+Once your template is built, you can use it in your VDESK sandbox:
 
 {{#if isTypeScript}}
 ```typescript
@@ -95,5 +95,5 @@ asyncio.run(main())
 
 1. Customize the template in `{{templateFile}}` to fit your needs
 2. Build the template using one of the methods above
-3. Use the template in your E2B sandbox code
-4. Check out the [E2B documentation](https://vdesk.dev/docs) for more advanced usage
+3. Use the template in your VDESK sandbox code
+4. Check out the [VDESK documentation](https://vdesk.dev/docs) for more advanced usage

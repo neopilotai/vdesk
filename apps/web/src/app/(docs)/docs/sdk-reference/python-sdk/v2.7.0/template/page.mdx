@@ -7,7 +7,7 @@
 class TemplateBuilder()
 ```
 
-Builder class for adding instructions to an E2B template.
+Builder class for adding instructions to an VDESKSK template.
 
 All methods return self to allow method chaining.
 
@@ -584,7 +584,7 @@ Final template state after start/ready commands are set.
 class TemplateBase()
 ```
 
-Base class for building E2B sandbox templates.
+Base class for building VDESKSK sandbox templates.
 
 
 ### \_\_init\_\_
@@ -726,7 +726,7 @@ Start template from a Bun base image.
 def from_base_image() -> TemplateBuilder
 ```
 
-Start template from the E2B base image (vdeskdev/base:latest).
+Start template from the VDESKSK base image (vdeskdev/base:latest).
 
 **Returns**:
 
@@ -770,11 +770,11 @@ Template().from_image('myregistry.com/myimage:latest', username='user', password
 def from_template(template: str) -> TemplateBuilder
 ```
 
-Start template from an existing E2B template.
+Start template from an existing VDESKSK template.
 
 **Arguments**:
 
-- `template`: E2B template ID or alias
+- `template`: VDESKSK template ID or alias
 
 **Returns**:
 
@@ -895,7 +895,7 @@ def to_dockerfile(template: "TemplateClass") -> str
 
 Convert a template to Dockerfile format.
 
-Note: Templates based on other E2B templates cannot be converted to Dockerfile.
+Note: Templates based on other VDESKSK templates cannot be converted to Dockerfile.
 
 **Arguments**:
 
@@ -903,7 +903,7 @@ Note: Templates based on other E2B templates cannot be converted to Dockerfile.
 
 **Raises**:
 
-- `ValueError`: If the template is based on another E2B template or has no base image
+- `ValueError`: If the template is based on another VDESKSK template or has no base image
 Example
 ```python
 template = Template().from_python_image('3').copy('app.py', '/app/')
@@ -977,7 +977,7 @@ Configuration for Google Container Registry (GCR) or Artifact Registry.
 class TemplateType(TypedDict)
 ```
 
-Internal representation of a template for the E2B build API.
+Internal representation of a template for the VDESKSK build API.
 
 
 ## BuildInfo

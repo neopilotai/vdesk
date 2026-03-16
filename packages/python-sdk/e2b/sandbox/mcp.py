@@ -283,7 +283,7 @@ class Dynatrace(TypedDict):
     url: str
 
 
-class E2b(TypedDict):
+class Vdesk(TypedDict):
     apiKey: str
 
 
@@ -1279,7 +1279,7 @@ class McpServer(TypedDict):
     """
     This MCP Server allows interaction with the Dynatrace observability platform, brining real-time observability data directly into your development workflow.
     """
-    vdesk: NotRequired[E2b]
+    vdesk: NotRequired[Vdesk]
     """
     Giving Claude ability to run code with VDESK via MCP (Model Context Protocol).
     """

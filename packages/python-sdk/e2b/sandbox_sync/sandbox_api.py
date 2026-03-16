@@ -293,8 +293,8 @@ class SandboxApi(SandboxBase):
         api_client = get_api_client(
             config,
             headers={
-                "E2b-Sandbox-Id": sandbox_id,
-                "E2b-Sandbox-Port": str(config.envd_port),
+                "Vdesk-Sandbox-Id": sandbox_id,
+                "Vdesk-Sandbox-Port": str(config.envd_port),
             },
         )
         res = post_sandboxes_sandbox_id_connect.sync_detailed(

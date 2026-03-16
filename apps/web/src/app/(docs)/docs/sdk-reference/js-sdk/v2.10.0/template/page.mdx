@@ -1,6 +1,6 @@
 ### TemplateBase
 
-Base class for building E2B sandbox templates.
+Base class for building VDESK sandbox templates.
 
 #### Implements
 
@@ -308,7 +308,7 @@ Template().fromAWSRegistry(
 fromBaseImage(): TemplateBuilder
 ```
 
-Start from E2B's default base image (vdeskdev/base:latest).
+Start from VDESK's default base image (vdeskdev/base:latest).
 
 ###### Returns
 
@@ -541,13 +541,13 @@ Template().fromPythonImage('3')
 fromTemplate(template: string): TemplateBuilder
 ```
 
-Start from an existing E2B template.
+Start from an existing VDESK template.
 
 ###### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `template` | `string` | E2B template ID or alias |
+| `template` | `string` | VDESK template ID or alias |
 
 ###### Returns
 
@@ -1134,7 +1134,7 @@ if (exists) {
 static build(template: TemplateClass, options: BuildOptions): Promise<BuildInfo>
 ```
 
-Build and deploy a template to E2B infrastructure.
+Build and deploy a template to VDESK infrastructure.
 
 ###### Parameters
 
@@ -1164,7 +1164,7 @@ await Template.build(template, {
 static buildInBackground(template: TemplateClass, options: BuildOptions): Promise<BuildInfo>
 ```
 
-Build and deploy a template to E2B infrastructure.
+Build and deploy a template to VDESK infrastructure.
 
 ###### Parameters
 
@@ -1232,7 +1232,7 @@ static toDockerfile(template: TemplateClass): string
 ```
 
 Convert a template to Dockerfile format.
-Note: Templates based on other E2B templates cannot be converted to Dockerfile.
+Note: Templates based on other VDESK templates cannot be converted to Dockerfile.
 
 ###### Parameters
 
@@ -1248,7 +1248,7 @@ Dockerfile string representation
 
 ###### Throws
 
-Error if the template is based on another E2B template
+Error if the template is based on another VDESK template
 
 ### toJSON()
 
@@ -2051,7 +2051,7 @@ Type representing a template in any state (builder or final).
 function Template(options?: TemplateOptions): TemplateFromImage
 ```
 
-Create a new E2B template builder instance.
+Create a new VDESK template builder instance.
 
 #### Parameters
 

@@ -1,6 +1,6 @@
 ### TemplateBase
 
-Base class for building E2B sandbox templates.
+Base class for building VDESKSK sandbox templates.
 
 #### Implements
 
@@ -203,7 +203,7 @@ Template().fromAWSRegistry(
 fromBaseImage(): TemplateBuilder
 ```
 
-Start from E2B's default base image (vdeskdev/base:latest).
+Start from VDESKSK's default base image (vdeskdev/base:latest).
 
 ###### Returns
 
@@ -408,13 +408,13 @@ Template().fromPythonImage('3')
 fromTemplate(template: string): TemplateBuilder
 ```
 
-Start from an existing E2B template.
+Start from an existing VDESKSK template.
 
 ###### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `template` | `string` | E2B template ID or alias |
+| `template` | `string` | VDESKSK template ID or alias |
 
 ###### Returns
 
@@ -966,7 +966,7 @@ Template().skipCache().fromPythonImage('3')
 static build(template: TemplateClass, options: BuildOptions): Promise<void>
 ```
 
-Build and deploy a template to E2B infrastructure.
+Build and deploy a template to VDESKSK infrastructure.
 
 ###### Parameters
 
@@ -997,7 +997,7 @@ static toDockerfile(template: TemplateClass): string
 ```
 
 Convert a template to Dockerfile format.
-Note: Templates based on other E2B templates cannot be converted to Dockerfile.
+Note: Templates based on other VDESKSK templates cannot be converted to Dockerfile.
 
 ###### Parameters
 
@@ -1013,7 +1013,7 @@ Dockerfile string representation
 
 ###### Throws
 
-Error if the template is based on another E2B template
+Error if the template is based on another VDESKSK template
 
 ### toJSON()
 
@@ -1629,8 +1629,8 @@ Options for building a template with authentication.
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| `apiKey`? | `string` | E2B API key for authentication. |
-| `domain`? | `string` | Domain of the E2B API. |
+| `apiKey`? | `string` | VDESKSK API key for authentication. |
+| `domain`? | `string` | Domain of the VDESKSK API. |
 
 ***
 
@@ -1681,7 +1681,7 @@ Type representing a template in any state (builder or final).
 function Template(options?: TemplateOptions): TemplateFromImage
 ```
 
-Create a new E2B template builder instance.
+Create a new VDESKSK template builder instance.
 
 #### Parameters
 

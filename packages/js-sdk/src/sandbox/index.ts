@@ -146,8 +146,8 @@ export class Sandbox extends SandboxApi {
     })
 
     const sandboxHeaders = {
-      'E2b-Sandbox-Id': this.sandboxId,
-      'E2b-Sandbox-Port': this.envdPort.toString(),
+      'Vdesk-Sandbox-Id': this.sandboxId,
+      'Vdesk-Sandbox-Port': this.envdPort.toString(),
     }
 
     const rpcTransport = createConnectTransport({
