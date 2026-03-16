@@ -51,6 +51,12 @@ export function ChatProvider({ children }: ChatProviderProps) {
   >(undefined);
   const [model, setModel] = useState<ComputerModel>("openai");
 
+  /**
+   * Parses a Server-Sent Event (SSE) message string into a typed event object
+   * Handles multiple SSE message formats and recovers gracefully from parse errors
+   * @param data - Raw SSE message data string
+   * @returns Parsed event object or null if parsing fails
+   */
   const parseSSEEvent = (data: string): ParsedSSEEvent<typeof model> | null => {
     try {
       if (!data || data.trim() === "") {
@@ -84,6 +90,11 @@ export function ChatProvider({ children }: ChatProviderProps) {
     }
   };
 
+  /**
+   * Sends a message to the AI chat API and streams responses back
+   * Handles SSE (Server-Sent Events) parsing and state updates
+   * @param options - Message content and sandbox configuration
+   */
   const sendMessage = async ({
     content,
     sandboxId,
@@ -131,11 +142,16 @@ export function ChatProvider({ children }: ChatProviderProps) {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorMessage = await response
+          .text()
+          .catch(() => `HTTP error! status: ${response.status}`);
+        throw new Error(`API error (${response.status}): ${errorMessage}`);
       }
 
       const reader = response.body?.getReader();
-      if (!reader) throw new Error("Response body is null");
+      if (!reader) {
+        throw new Error("Failed to read response stream: Response body is null");
+      }
 
       setMessages((prev) => [
         ...prev,
@@ -151,7 +167,14 @@ export function ChatProvider({ children }: ChatProviderProps) {
       let buffer = "";
 
       while (true) {
-        const { done, value } = await reader.read();
+        let { done, value } = { done: false, value: undefined as Uint8Array | undefined };
+        
+        try {
+          ({ done, value } = await reader.read());
+        } catch (readError) {
+          logError("Error reading response stream:", readError);
+          throw new Error("Failed to read response stream");
+        }
 
         if (done) {
           if (buffer.trim()) {
@@ -174,8 +197,10 @@ export function ChatProvider({ children }: ChatProviderProps) {
           break;
         }
 
-        const chunk = decoder.decode(value, { stream: true });
-        buffer += chunk;
+        if (value) {
+          const chunk = decoder.decode(value, { stream: true });
+          buffer += chunk;
+        }
 
         const events = buffer.split("\n\n");
 
@@ -288,6 +313,10 @@ export function ChatProvider({ children }: ChatProviderProps) {
     }
   };
 
+  /**
+   * Stops the current generation/streaming by aborting the fetch request
+   * Used when user cancels an operation or changes tabs
+   */
   const stopGeneration = useCallback(() => {
     if (abortControllerRef.current) {
       try {
@@ -302,6 +331,10 @@ export function ChatProvider({ children }: ChatProviderProps) {
     }
   }, []);
 
+  /**
+   * Clears all messages and errors from the chat history
+   * Used when stopping sandbox or resetting conversation
+   */
   const clearMessages = useCallback(() => {
     setMessages([]);
     setError(null);
